@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Singapore Airlines - Dashboard</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+
+  <!-- Custom styles for this template-->
+  <link href="css/sb-admin-2.min.css" rel="stylesheet">
+  <script src="../resource/js/scrollable.js"></script>
+
+</head>
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <!-- 4b2354 -->
+    <ul class="navbar-nav sidebar sidebar-dark accordion" style="background-color: #4b2354;" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="">
+        <!-- <div class="sidebar-brand-icon rotate-n-15">
+          <i class="fas fa-laugh-wink"></i>
+        </div> -->
+        <div class="logo_container">
+          <div class="logo"><img src="logo.png" alt="">FlightScraper</div>
+        </div>
+        <!-- <div class="sidebar-brand-text mx-3">SQ Admin</div> -->
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item active">
+        <a class="nav-link" href="admin_index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="details.html">
+          <i class="fa fa-info-circle"></i>
+          <span>Details</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link" href="flight.html">
+          <i class="fa fa-database"></i>
+          <span>Flight Information</span></a>
+      </li>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">admin</span>
+                <img class="img-profile rounded-circle" src="zixiang.png">
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+        
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <div id="errorDiv"></div>
+
+          <!-- Page Heading -->
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h1 class="h3 mb-0 text-gray-800">Singapore Airlines Dashboard</h1>
+          </div>
+
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Total number of bookings Card Example -->
+            <div class="1col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total number of bookings
+                      </div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <p style="color:purple;font-size:40px;" id="num_bookings"></p>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Most Booked Flights Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Most Booked Flights</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800"></div>
+                      <p style="color:purple;font-size:40px;" id="most_booked_flights"></p>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Total Cancellations Example -->
+            <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Total Cancellations</div>
+                      <div class="row no-gutters align-items-center">
+                        <p style="color:purple;font-size:40px;" id="total_cancellations"></p>
+                        <!-- <div class="col-auto">
+                          <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                        </div> -->
+                        <!-- <div class="col">
+                          <div class="progress progress-sm mr-2">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                        </div> -->
+                      </div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Most Popular Destination Example -->
+            <!-- <div class="col-xl-3 col-md-6 mb-4">
+              <div class="card border-left-warning shadow h-100 py-2">
+                <div class="card-body">
+                  <div class="row no-gutters align-items-center">
+                    <div class="col mr-2">
+                      <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Most Popular Destination</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                    </div>
+                    <div class="col-auto">
+                      <i class="fas fa-comments fa-2x text-gray-300"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+
+          <!-- Content Row -->
+
+          <div class="row">
+
+            <!-- Area Chart -->
+            <div class="col-xl-8 col-lg-7">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Monthly Bookings Overview</h6>
+
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                  <!-- <div class="chart-area">
+                    <canvas id="myAreaChart"></canvas>
+                  </div> -->
+                  <div id="lineContainer" value="0" style="height: 300px; width: 100%;"></div>
+                  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pie Chart -->
+            <div class="col-xl-4 col-lg-5">
+              <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                  <h6 class="m-0 font-weight-bold text-primary">Cancellations Overview</h6>
+
+                </div>
+                <!-- Card Body -->
+                <!-- <div class="card-body">
+                  <div class="chart-pie pt-4 pb-2">
+                    <canvas id="myPieChart"></canvas>
+                  </div>
+                  <div class="mt-4 text-center small">
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-primary"></i> Direct
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-success"></i> Social
+                    </span>
+                    <span class="mr-2">
+                      <i class="fas fa-circle text-info"></i> Referral
+                    </span>
+                  </div>
+                </div> -->
+                <div id="chartContainer" style="height: 345px; width: 100%;"></div>
+                <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+
+              </div>
+            </div>
+          </div>
+
+          <!-- Content Row -->
+          <div class="row">
+
+            <!-- Content Column -->
+            <div class="col-lg-6 mb-4">
+
+              <!-- Project Card Example -->
+
+
+            </div>
+
+            <div class="col-lg-6 mb-4">
+
+
+
+            </div>
+            <!-- /.container-fluid -->
+
+          </div>
+          <!-- End of Main Content -->
+
+          <!-- Footer -->
+          <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+      </div>
+      <!-- End of Page Wrapper -->
+
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
+
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primary" href="../admin_login.html">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Bootstrap core JavaScript-->
+      <script src="vendor/jquery/jquery.min.js"></script>
+      <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+      <!-- Core plugin JavaScript-->
+      <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+      <!-- Custom scripts for all pages-->
+      <script src="js/sb-admin-2.min.js"></script>
+
+      <!-- Page level plugins -->
+      <script src="vendor/chart.js/Chart.min.js"></script>
+
+      <!-- Page level custom scripts -->
+      <!-- <script src="js/demo/chart-area-demo.js"></script>
+      <script src="js/demo/chart-pie-demo.js"></script> -->
+
+      <script>
+        // For Total Number of Bookings
+        $(async () => {
+          // Change serviceURL to your own
+          var serviceURL = "https://g8t2-kong.herokuapp.com/num_bookings";
+
+
+          try {
+            const response =
+              await fetch(
+                serviceURL, { method: 'GET' }
+              );
+            const data = await response.json();
+            var num_bookings = data.num_bookings;
+            if (!num_bookings || !num_bookings.length) {
+              console.log('failed');
+              showError("No bookings found.")
+
+            } else {
+              document.getElementById('num_bookings').innerHTML = num_bookings;
+
+            }
+          } catch (error) {
+            showError("No bookings found.")
+          } // error
+
+          var serviceURL1 = "https://g8t2-kong.herokuapp.com/most_booked_flights";
+
+
+          try {
+            const response =
+              await fetch(
+                serviceURL1, { method: 'GET' }
+              );
+            const data = await response.json();
+            // console.log(data);
+            var most_booked_flights = data.most_booked_flights;
+            if (!most_booked_flights || !most_booked_flights.length) {
+              showError("No bookings found.")
+
+            } else {
+
+              document.getElementById('most_booked_flights').innerHTML = most_booked_flights;
+
+            }
+          } catch (error) {
+            console.log("error");
+          } // error
+
+
+
+          // For total cancellations
+          var serviceURL2 = "https://g8t2-kong.herokuapp.com/total_cancellations";
+
+          try {
+            const response =
+              await fetch(
+                serviceURL2, { method: 'GET' }
+              );
+            const data = await response.json();
+            var total_cancellations = data.total_cancellations; //the arr is in data.books of the JSON data
+            //  console.log(total_cancellations[0])
+            //array or array.length are falsy
+            if (total_cancellations == null || !total_cancellations.length) {
+              showError("An error occured. Could not get bookings")
+            } else {
+              // window.onload = function(){
+              document.getElementById('total_cancellations').innerHTML = total_cancellations;
+              // };
+            }
+          } catch (error) {
+            console.log("error");
+          } // error
+
+          var serviceURL3 = "https://g8t2-kong.herokuapp.com/total_non_cancellations";
+
+          try {
+            const response =
+              await fetch(
+                serviceURL3, { method: 'GET' }
+              );
+            const data = await response.json();
+            var total_non_cancellations = data.total_non_cancellations;
+
+            if (!total_non_cancellations || !total_non_cancellations.length) {
+              showError("An error occured. Could not get bookings")
+            }
+
+          } catch (error) {
+            showError("An error occured. Could not get bookings")
+          } // error
+
+
+          // PIE CHART
+          percent_cancellations = (total_cancellations[0] / (total_cancellations[0] + total_non_cancellations[0])) * 100
+          percent_non_cancellations = (total_non_cancellations[0] / (total_cancellations[0] + total_non_cancellations[0])) * 100
+
+          var chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            data: [{
+              type: "pie",
+              startAngle: 240,
+              yValueFormatString: "##0.00\"%\"",
+              indexLabel: "{label} {y}",
+              dataPoints: [
+                { y: percent_cancellations, label: "Cancellations" },
+                { y: percent_non_cancellations, label: "Non-cancellations" }
+              ]
+            }]
+          });
+          chart.render();
+
+          var serviceURL4 = "https://g8t2-kong.herokuapp.com/total_non_cancellations";
+
+          try {
+            const response =
+              await fetch(
+                serviceURL4, { method: 'GET' }
+              );
+            const data = await response.json();
+
+            if (response.ok){
+              var total_non_cancellations = data.total_non_cancellations;
+            }else{
+              showError("An error occured. Could not get bookings")
+
+            }
+          } catch (error) {
+            showError("An error occured. Could not get bookings")
+          } // error
+
+          // LINE CHART
+          var serviceURL5 = "https://g8t2-kong.herokuapp.com/booking_month";
+
+          try {
+            const response =
+              await fetch(
+                serviceURL5, { method: 'GET' }
+              );
+            const data = await response.json();
+            var month_count = data.month_count;
+
+
+            var dataPoints = []
+            for (i = 0; i < month_count.length; i++) {
+              dataPoints.push({
+                x: month_count[i][0],
+                y: month_count[i][1]
+              });
+            }
+            console.log(dataPoints);
+
+            if (month_count == null || !month_count.length) {
+              showError("An error occured. Could not get bookings")
+
+            }
+
+          } catch (error) {
+            showError("An error occured. Could not get bookings")
+          } // error
+
+          var chart = new CanvasJS.Chart("lineContainer", {
+            animationEnabled: true,
+            theme: "light2",
+            axisY: {
+              includeZero: false
+            },
+            data: [{
+              type: "line",
+              indexLabelFontSize: 16,
+              dataPoints: dataPoints
+            }]
+          });
+          chart.render();
+        });
+      </script>
+
+</body>
+
+</html>
