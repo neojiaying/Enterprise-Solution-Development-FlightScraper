@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FlightScraper</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://apis.google.com/js/client:platform.js?onload=renderButton" async defer></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet" type="text/css">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="resource/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="resource/css/util.css">
+    <link rel="stylesheet" type="text/css" href="resource/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<meta name="google-signin-client_id" content="227939001606-9u9dlam9l0scst1r0qbfkk34fbaonbs2.apps.googleusercontent.com">
+<script>
+    function renderButton() {
+        gapi.signin2.render('gSignIn', {
+            'scope': 'profile email',
+            'width': 280,
+            'height': 50,
+            'longtitle': true,
+            'theme': 'dark',
+            'onsuccess': onSuccess,
+            'onfailure': onFailure,
+        });
+    }
+
+    // Sign-in success callback
+    function onSuccess(googleUser) {
+        // Get the Google profile data (basic)
+        var profile = googleUser.getBasicProfile();
+        // Retrieve the Google account data
+        gapi.client.load('oauth2', 'v2', function () {
+            var request = gapi.client.oauth2.userinfo.get({
+                'userId': 'me'
+            });
+            request.execute(function (resp) {
+                var profile = googleUser.getBasicProfile();
+                var email = profile.getEmail();
+                var Name = profile.getName();
+                var Id = profile.getId();
+                console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+                console.log('Name: ' + profile.getName());
+                console.log('Image URL: ' + profile.getImageUrl());
+                console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+                //need to change and post to login to validate
+                var data = {
+                    email: email,
+                    name: Name,
+                    id: Id
+                };
+                ValidateUserData(data);
+                window.location.href = "index.html?username=" + profile.getName() + "&email=" + profile.getEmail();
+
+            });
+        });
+    }
+
+    // Sign-in failure callback
+    function onFailure(error) {
+        alert(error);
+    }
+
+    // Sign out the user
+    function signOut() {
+        var auth2 = gapi.auth2.getAuthInstance();
+        auth2.signOut().then(function () {
+            document.getElementsByClassName("userContent")[0].innerHTML = '';
+            document.getElementsByClassName("userContent")[0].style.display = "none";
+            document.getElementById("gSignIn").style.display = "block";
+        });
+
+        auth2.disconnect();
+    }
+
+    function ValidateUserData(userData) {
+        console.log(userData);
+        $.post('userData.php', { oauth_provider: 'google', userData });
+
+    }
+
+
+
+
+</script>
+
+<body>
+
+
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+            <form class="login100-form validate-form">
+                <span class="login100-form-title p-b-37">
+                    Sign In
+                </span>
+                
+                <div class="wrap-input100 validate-input m-b-20" data-validate="Enter username or email">
+                    <input class="input100" type="text" name="username" placeholder="username or email">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-25" data-validate="Enter password">
+                    <input class="input100" type="password" name="pass" placeholder="password">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn">
+                        Sign In
+                    </button>
+                </div>
+
+                <div class="text-center p-t-57 p-b-20">
+                    <span class="txt1">
+                        Or login with
+                    </span>
+                </div>
+
+                <div id="gSignIn"></div>
+                
+                <!-- Show the user profile details -->
+                <div class="userContent" style="display: none;"></div>
+
+                <div class="text-center">
+                    <a href="#" class="txt2 hov1">
+                        Sign Up
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    <div id="dropDownSelect1"></div>
+
+    <!--===============================================================================================-->
+    <script src="resource/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="resource/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="resource/vendor/bootstrap/js/popper.js"></script>
+    <script src="resource/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="resource/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="resource/vendor/daterangepicker/moment.min.js"></script>
+    <script src="resource/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="resource/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="resource/js/main.js"></script>
+
+</body>
+
+</html>

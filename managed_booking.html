@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>FlightScraper</title>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="description" content="FlightScraper Project" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="resource/styles/bootstrap4/bootstrap.min.css" />
+  <link href="resource/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.css" />
+  <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" />
+  <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/animate.css" />
+  <link rel="stylesheet" type="text/css" href="resource/styles/main_styles.css" />
+  <link rel="stylesheet" type="text/css" href="resource/styles/responsive.css" />
+  <!-- <link href="src/all.min.css" rel="stylesheet" type="text/css" /> -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet" />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <script type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"></script>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+  <!-- <link rel="stylesheet" type="text/css " href="src/css-stylesheet.css" /> -->
+  <script src="resource/js/scrollable.js"></script>
+</head>
+
+<body>
+  <style>
+    body {
+      font-family: "Open Sans", sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      background: #5d2f90;
+      color: black !important;
+    }
+
+    .display-4 {
+      color: black;
+    }
+
+    .display-5 {
+      color: white;
+    }
+
+    .sorting {
+      width: 25px;
+    }
+
+    #userbookingtable_filter {
+      text-align: right;
+    }
+
+    .col-sm-12 {
+      align-content: center;
+    }
+
+    #userbookingtable{
+      text-align: center;
+    }
+    /* 
+    .btn btn-secondary btn-lg btn-block {
+      
+    } */
+    #pagination {
+      text-align: right;
+      margin: 0px;
+    }
+
+    .btn {
+      /* background-color: DodgerBlue; */
+      border: none;
+      /* color: b; */
+      padding: 12px 16px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #secondary-container {
+      border: 1px solid black;
+      background-color: white;
+      border-width: 5px;
+      border-color: white;
+      box-shadow: 10px 10px 5px grey;
+    }
+
+    .layout {
+      text-align: center;
+    }
+
+    .modal-header {
+      background-color: white;
+      color: black;
+    }
+
+    .modal-body {
+      background-color: white;
+      color: black;
+    }
+
+    .optionsdesign {
+      width: 100%;
+      height: 55%;
+    }
+  </style>
+
+  <div class="super_container">
+    <!-- Header -->
+
+    <header id="header_logo" class="header">
+      <!-- Top Bar -->
+
+      <div class="top_bar">
+        <div class="container">
+          <div class="row">
+            <div class="col d-flex flex-row">
+              <div class="user_box ml-auto">
+                <div class="user_box_login user_box_link">
+                  <a href="login.html">Login</a>
+                </div>
+                <!-- Todo:
+							after log in display username 
+							default will be "-"-->
+                <div class="user_box_register user_box_link">
+                  <a href="#">Tng Zi Xiang</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Navigation -->
+
+      <nav class="main_nav">
+        <div class="container">
+          <div class="row">
+            <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+              <div class="logo_container">
+                <div class="logo">
+                  <a href="#"><img src="resource/images/logo.png" alt="" />FlightScraper</a>
+                </div>
+              </div>
+              <div class="main_nav_container ml-auto">
+                <ul class="main_nav_list">
+                  <li class="main_nav_item"><a href="index.html">home</a></li>
+                  <li class="main_nav_item">
+                    <a href="flight_information.html">Flight Search</a>
+                  </li>
+                  <li class="main_nav_item">
+                    <a href="managed_booking.html?userid=1">Manage Booking</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div style="height:200px;"></div>
+    <div id="main-container" class="container">
+      <div id="errorDiv"></div>
+
+      <!-- need to fix the colour -->
+
+      <h1 class="display-5" style="font-size: 28px;">
+        Managed Booking Detail
+      </h1>
+      <br />
+
+      <div id="secondary-container" class="container">
+        <br />
+        <h5 class="display-4" style="font-size: 24px;">My Booking</h5>
+
+        <!-- Populate the table -->
+        <table id="userbookingtable" class="table table-striped" style="width:100%">
+          <col style="width:15%">
+          <col style="width:15%">
+          <col style="width:15%">
+          <col style="width:10%">
+          <col style="width:10%">
+          <col style="width:15%">
+          <col style="width:35%">
+          <thead>
+            <tr>
+              <th>Booking ID</th>
+              <th>Airline ID</th>
+              <th>Flight ID</thwidth=10%>
+              <th>Origin</th>
+              <th>Destination</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tablecontent"></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+
+      <!-- delete modal -->
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLongTitle">
+                Cancel Booking
+              </h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Are you sure you want to cancel your flight?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                Cancel
+              </button>
+              <button type="button" id="confirm_update" data-dismiss="modal" class="btn btn-primary">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Edit modal -->
+      <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="exampleModalLongTitle">
+                Edit Booking
+              </h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div id="text"></div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">
+                Cancel
+              </button>
+              <button type="button" id="confirm_update" data-dismiss="modal" class="btn btn-primary">
+                Continue
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Hidden field to store bookingID -->
+      <input type="hidden" id="hiddenBookingID" name="bookingID" value="" />
+      <input type="hidden" id="hiddenStatusID" name="status" value="" />
+      <input type="hidden" id="hiddenNumPassenger" name="status" value="" />
+      <input type="hidden" id="hiddenPassengerID" name="status" value="" />
+    </div>
+  </div>
+
+  <script>
+    function showError(msg) {
+      $("#errorDiv").empty();
+      $("#errorDiv").append(
+        '<div class="alert alert-danger alert-dismissible fade show" role="alert">' +
+        msg +
+        `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button></div>`
+      );
+      $("#header_logo").show();
+      $(window).scrollTop(0);
+    }
+
+    $(document).ready(function () {
+      $("#userbookingtable").DataTable();
+      $("#tablecontent").empty();
+    });
+
+    $("#confirm_update").click(function () {
+      updateFlightStatus();
+      location.reload();
+    });
+
+    function updatebooking(bookingID) {
+      $("#hiddenBookingID").val(bookingID);
+    }
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var userID = urlParams.get("userid");
+
+    // Populate the passenger table, number of time it must load
+    // var number = $('#hiddenNumPassenger').val()
+    // $("#text").html(number + " ")
+
+    // Get number of passenger according to a ID
+    async function retrieveNumberPassenger() {
+      // Update your own bookingID
+      var bookingID = $("#hiddenBookingID").val();
+      var serviceURL = "https://g8t2-kong.herokuapp.com/pass/passenger/" + bookingID;
+      try {
+        const response = await fetch(serviceURL, { method: "GET" });
+        const allpassenger = await response.json();
+        $("#hiddenNumPassenger").val(allpassenger.passenger_info.length);
+        console.log(allpassenger.passenger_info);
+        var numberpassenger = $("#hiddenNumPassenger").val();
+        for (var i = 0; i < numberpassenger; i++) {
+          var name = allpassenger.passenger_info[i].name;
+          var email = allpassenger.passenger_info[i].email;
+          var passportNum = allpassenger.passenger_info[i].passportNo;
+          var seatNo = allpassenger.passenger_info[i].seatNo;
+          var addonsID = allpassenger.passenger_info[i].addonsID;
+          var passengerID = allpassenger.passenger_info[i].passengerID;
+          var food = "";
+          var baggage = "";
+          if (addonsID != "") {
+            var adds_item = addonsID.split(",");
+            if (adds_item.length > 1) {
+              var first_upgrade = adds_item[0].split(":");
+              if (first_upgrade == "F1") {
+                food = "Nasi Lemak";
+              } else if (first_upgrade == "F2") {
+                food = "Soya Chicken Rice";
+              } else {
+                food = "Vegan Lasage";
+              }
+              var second_upgrade = adds_item[1].split(":");
+              if (second_upgrade == "B5") {
+                baggage = "5kg";
+              } else if (second_upgrade == "B10") {
+                baggage = "10kg";
+              } else if (second_upgrade == "B20") {
+                baggage = "20kg";
+              } else {
+                baggage = "30kg";
+              }
+            } else {
+              var first_upgrade = adds_item[0].split(":");
+              if (first_upgrade == "F1") {
+                food = "Nasi Lemak";
+              } else if (first_upgrade == "F2") {
+                food = "Soya Chicken Rice";
+              } else {
+                food = "Vegan Lasage";
+              }
+            }
+          }
+
+          displayModal(name, email, passportNum, seatNo, food, baggage, i + 1, passengerID);
+        }
+      } catch (error) {
+        showError("There is problem extracting the number of passenger");
+      }
+    }
+
+    function displayModal(
+      name,
+      email,
+      passportNum,
+      seatNo,
+      food,
+      baggage,
+      i,
+      passengerID
+    ) {
+      buttonid = i + "_" + passengerID;
+      passid = "passengerdetail_" + i;
+      var display =
+        '<button id="' +
+        buttonid +
+        '"class="btn btn-primary" onclick="updateInfo(this.id)"><svg class="bi bi-plus" width="1em" height="1em" viewBox="0 0 16 16" fill="blue" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 3.5a.5.5 0 01.5.5v4a.5.5 0 01-.5.5H4a.5.5 0 010-1h3.5V4a.5.5 0 01.5-.5z" clip-rule="evenodd"/><path fill-rule="evenodd" d="M7.5 8a.5.5 0 01.5-.5h4a.5.5 0 010 1H8.5V12a.5.5 0 01-1 0V8z" clip-rule="evenodd"/></svg></button>' +
+        "      " +
+        "Passenger " +
+        i +
+        '<br><br><div id="' +
+        passid +
+        '"><br><form class="needs-validation"  novalidate><div class="form-row"><div class="col-md-4 mb-3 md-form">' +
+        '<label for="validationCustom012">Name</label><input type="text" class="form-control" id="name' +
+        i +
+        '" placeholder="" value="' +
+        name +
+        '"required>' +
+        '<div class="valid-feedback"></div></div>' +
+        '<div class="col-md-4 mb-3 md-form"><label for="validationCustom022">Email</label>' +
+        '<input type="text" class="form-control" id="email' +
+        i +
+        '" value="' +
+        email +
+        '"required><div class="valid-feedback">Looks good</div></div>' +
+        '<div class="col-md-4 mb-3 md-form"><label for="validationCustomUsername2">Seat Number</label><input type="text" class="form-control" value="' +
+        seatNo +
+        '"id="seatNo' +
+        i +
+        '" aria-describedby="inputGroupPrepend2"required><div class="invalid-feedback">Input your passport number.</div></div></div>' +
+        '<div class="form-row"><div class="col-md-3 mb-3 md-form"><label for="validationCustom032">Passport #</label><input type="text" class="form-control" value="' +
+        passportNum +
+        '"id="passport' +
+        i +
+        '" required><div class="invalid-feedback">Please provide a valid city.</div></div>' +
+        '<div class="col-md-6 mb-3 md-form"><label for="validationCustom012">Food Upgrade</label><br><select class="optionsdesign" style="width: 100%;" id="food' +
+        i +
+        '"><option value="">No food purchase</option><option value="F1">Nasi Lemak with Chicken Rendang</option><option value="F2">Soya Chciken Rice with Pak Chye</option><option value="F3">Vegan Lasange Delight</option></select></div>' +
+        '<div class="col-md-3 mb-3 md-form"><label for="validationCustom052">Baggage</label><select class="optionsdesign" style="width: 100%;" id="baggage' +
+        i +
+        '"><option value="">Default Package</option><option value="B5">5 KG</option><option value="B10">10 KG</option><option value="B20">20 KG</option><option value="B30">30 KG</option></select></div></div>' +
+        '<div><button type="button" id="move' +
+        i +
+        '" class="btn btn-secondary btn-lg btn-block">Update Passenger</button></div><br>' +
+        '<div id="showsuccessmessage" class="alert alert-success" role="alert">You have successfuly updated the passenger info!</div>';
+
+      // <button type="button" class="btn btn-primary btn-lg btn-block">Block level button</button>
+      $("#text").append(display);
+      $("#" + passid).hide();
+    }
+
+    function updateInfo(ID) {
+      var separate_data = ID.split("_");
+      var id = separate_data[0];
+      var passengerID = separate_data[1];
+      $("#passengerdetail_" + id).toggle();
+      $("#showsuccessmessage").hide();
+      $("#move" + id).click(function () {
+        UpdatePassengerDetail(id, passengerID);
+        $("#move" + id).hide();
+        $("#showsuccessmessage").show();
+      });
+    }
+
+    async function UpdatePassengerDetail(ID, passengerID) {
+      console.log("HELLO");
+      var name = $("#name" + ID).val();
+      var email = $("#email" + ID).val();
+      var seatNo = $("#seatNo" + ID).val();
+      var passportNo = $("#passport" + ID).val();
+      console.log(passportNo);
+      var food = $("#food" + ID).val();
+      var baggage = $("#baggage" + ID).val();
+      // NEED do mappping , change to a drop down for food
+      console.log(food);
+      console.log(baggage);
+
+      //**********************************
+      var addonsID = food + "," + baggage;
+      var serviceURL =
+        "https://g8t2-kong.herokuapp.com/pass/update_passenger/" + passengerID;
+      try {
+        console.log(
+          JSON.stringify({
+            name: name,
+            email: email,
+            seatNo: seatNo,
+            passportNo: passportNo,
+            addonsID: addonsID
+          })
+        );
+        const response = await fetch(serviceURL, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            seatNo: seatNo,
+            passportNo: passportNo,
+            addonsID: addonsID
+          })
+        });
+        const data = await response.json();
+        console.log(data);
+        if (response.ok) {
+          console.log("All is good");
+        }
+      } catch (error) {
+        // Errors when calling the service; such as network error,
+        // service offline, etc
+        console.log(error.message);
+        showError(
+          "There is a problem adding passenger, please try again later.<br />" 
+        );
+      }
+    }
+
+    function editbooking(bookingID) {
+      $("#hiddenBookingID").val(bookingID);
+      retrieveNumberPassenger();
+    }
+
+    function checkin(checkin) {
+      window.location.href = "boarding_pass.html?bookingID=" + checkin;
+    }
+
+    // Update table once flight cancel
+    async function updateFlightStatus() {
+      var bookingID = $("#hiddenBookingID").val();
+      console.log(bookingID);
+      var serviceURL = "https://g8t2-kong.herokuapp.com/update_booking/" + bookingID;
+      console.log(serviceURL);
+      try {
+        const response = await fetch(serviceURL, { method: "PUT" });
+        const updated_status = await response.json;
+        console.log(updated_status);
+      } catch (error) {
+        showError("There is a problem updating the booking status, please try again later.<br />");
+      }
+    }
+
+    // Retrieve Booking detail and flight information to populate the table
+    $(async () => {
+      // Change serviceURL to your own
+      var serviceURL = "https://g8t2-kong.herokuapp.com/user_booking/" + userID;
+      try {
+        const response = await fetch(serviceURL, { method: "GET" });
+        const booking_info = await response.json();
+        console.log(booking_info)
+        var all_booking_info = booking_info.bookings;
+        var table = $("#userbookingtable").DataTable();
+        for (var i = 0; i < all_booking_info.length; i++) {
+          var bookingID = all_booking_info[i].bookingID;
+          var flightID = all_booking_info[i].flightID;
+          console.log(flightID)
+          var status = all_booking_info[i].isCancelled;
+          var serviceURL = "https://g8t2-kong.herokuapp.com/runAirline/get_one_flight/" + flightID;
+          console.log(serviceURL);
+
+          try {
+            const response = await fetch(serviceURL, { method: "GET" });
+            const flight_info = await response.json();
+            var airlineID = flight_info.airlineId;
+            var origin = flight_info.origin;
+            var destination = flight_info.destination;
+            var inbound = flight_info.inbound;
+            var outbound = flight_info.outbound;
+            var inboundTimeDate = flight_info.inbound_time;
+            var outboundTimeDate = flight_info.outbound_time;
+            var inboundTime = inboundTimeDate.split(" ");
+            var outboundTime = outboundTimeDate.split(" ");
+            if (status == "1") {
+              var status = "Cancelled";
+              var options = "-";
+            } else {
+              var status = "Available";
+              var options =
+                "<button id='" +
+                bookingID +
+                "' onclick='checkin(this.id)' class='btn btn-primary'><i class='fa fa-bars'></i></button>" +
+                " " +
+                "<button type='button' data-toggle='modal' data-target='#myModal' id='" +
+                bookingID +
+                "' onclick='updatebooking(this.id)' class='btn btn-danger'><i class='fa fa-trash'></i></button>" +
+                " " +
+                "<button data-toggle='modal' data-target='#editModal' id='" +
+                bookingID +
+                "' onclick='editbooking(this.id)' class='btn btn-secondary'><i class='fa fa-edit'></i></button>";
+            }
+
+            var row =
+              "<tr>" +
+              "<td width=10%>" +
+              bookingID +
+              "</td>" +
+              "<td width=15%>" +
+              airlineID +
+              "</td>" +
+              "<td width='10%'>" +
+              flightID +
+              "</td>" +
+              "<td width=15%>" +
+              origin +
+              "</td>" +
+              "<td width=15%>" +
+              destination +
+              "</td>" +
+              "<td>" +
+              status +
+              "</td>" +
+              "<td>" +
+              options +
+              "</td>" +
+              "</tr>";
+
+            var rowNode = table
+              .row.add([bookingID, airlineID, flightID, origin, destination, status, options])
+              .draw()
+              .node();
+            // $("#tablecontent").append(row);
+          } catch (error) {
+            showError(
+              "There is a problem retrieving flights data, please try again later.<br />"
+            );
+          }
+        }
+      } catch (error) {
+        // Errors when calling the service; such as network error,
+        // service offline, etc
+        showError(
+          "There is a problem retrieving booking data, please try again later.<br />"
+        );
+      } // error
+    });
+
+    (function () {
+      "use strict";
+      window.addEventListener(
+        "load",
+        function () {
+          // Fetch all the forms we want to apply custom Bootstrap validation styles to
+          var forms = document.getElementsByClassName("needs-validation");
+          // Loop over them and prevent submission
+          var validation = Array.prototype.filter.call(forms, function (form) {
+            form.addEventListener(
+              "submit",
+              function (event) {
+                if (form.checkValidity() === false) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add("was-validated");
+              },
+              false
+            );
+          });
+        },
+        false
+      );
+    })();
+  </script>
+</body>
+
+</html>

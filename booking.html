@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FlightScraper</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="FlightScraper Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="resource/styles/bootstrap4/bootstrap.min.css">
+    <link href="resource/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="resource/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="resource/styles/responsive.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="resource/js/scrollable.js"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            background: #5d2f90;
+            color: white;
+        }
+
+        #selectbtn {
+            vertical-align: middle;
+            text-align: middle;
+        }
+
+        .flightSearchResult #airlogo {
+            vertical-align: top;
+        }
+
+        .flightSearchResult td {
+            border-top: 0;
+            height: 5px;
+            padding: 0rem;
+            text-align: center;
+            width: 20%;
+            font-size: 18px;
+        }
+
+        .flightSearchResult {
+            color: black;
+            border-color: mediumpurple;
+            padding: 10px;
+            box-shadow: 5px 5px mediumpurple;
+            background-color: aliceblue;
+            width: 100%;
+            border-radius: 25px;
+        }
+
+
+        .displayprice {
+            text-align: right;
+            color: lightblue
+        }
+
+        *,
+        *:before,
+        *:after {
+            box-sizing: border-box;
+        }
+
+        html {
+            font-size: 16px;
+        }
+
+        .plane {
+            margin: 20px auto;
+            max-width: 300px;
+        }
+
+        .cockpit {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+            border-bottom: 5px solid #d8d8d8;
+        }
+
+        .cockpit:before {
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 500px;
+            width: 100%;
+            border-radius: 50%;
+            border-right: 5px solid #d8d8d8;
+            border-left: 5px solid #d8d8d8;
+        }
+
+        .cockpit h1 {
+            width: 60%;
+            margin: 100px auto 35px auto;
+        }
+
+        .exit {
+            position: relative;
+            height: 50px;
+        }
+
+        .row {
+            display: -ms-flexbox;
+            display: contents;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+        }
+
+        .exit:before,
+        .exit:after {
+            content: "EXIT";
+            font-size: 14px;
+            line-height: 18px;
+            padding: 0px 2px;
+            font-family: "Arial Narrow", Arial, sans-serif;
+            display: block;
+            position: absolute;
+            background: green;
+            color: white;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+
+        .exit:before {
+            left: 0;
+        }
+
+        .exit:after {
+            right: 0;
+        }
+
+        .fuselage {
+            border-right: 5px solid #d8d8d8;
+            border-left: 5px solid #d8d8d8;
+        }
+
+        ol {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .seats {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: flex-start;
+        }
+
+        .seat {
+            display: flex;
+            flex: 0 0 14.28571428571429%;
+            padding: 5px;
+            position: relative;
+        }
+
+        .seat:nth-child(3) {
+            margin-right: 14.28571428571429%;
+        }
+
+        .seat input[type=checkbox] {
+            position: absolute;
+            opacity: 0;
+        }
+
+        .seat input[type=checkbox]:checked+label {
+            background: #bada55;
+            -webkit-animation-name: rubberBand;
+            animation-name: rubberBand;
+            animation-duration: 300ms;
+            animation-fill-mode: both;
+        }
+
+        .seat input[type=checkbox]:disabled+label {
+            background: #dddddd;
+            text-indent: -9999px;
+            overflow: hidden;
+        }
+
+        .seat input[type=checkbox]:disabled+label:after {
+            content: "X";
+            text-indent: 0;
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+        }
+
+        .seat input[type=checkbox]:disabled+label:hover {
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        .seat label {
+            display: block;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.5rem;
+            padding: 4px 0;
+            background: #F42536;
+            border-radius: 5px;
+            animation-duration: 300ms;
+            animation-fill-mode: both;
+        }
+
+        .seat label:before {
+            content: "";
+            position: absolute;
+            width: 75%;
+            height: 75%;
+            top: 1px;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            background: rgba(255, 255, 255, 0.4);
+            border-radius: 3px;
+        }
+
+        .seat label:hover {
+            cursor: pointer;
+            box-shadow: 0 0 0px 2px #5C6AFF;
+        }
+
+        @-webkit-keyframes rubberBand {
+            0% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            30% {
+                -webkit-transform: scale3d(1.25, 0.75, 1);
+                transform: scale3d(1.25, 0.75, 1);
+            }
+
+            40% {
+                -webkit-transform: scale3d(0.75, 1.25, 1);
+                transform: scale3d(0.75, 1.25, 1);
+            }
+
+            50% {
+                -webkit-transform: scale3d(1.15, 0.85, 1);
+                transform: scale3d(1.15, 0.85, 1);
+            }
+
+            65% {
+                -webkit-transform: scale3d(0.95, 1.05, 1);
+                transform: scale3d(0.95, 1.05, 1);
+            }
+
+            75% {
+                -webkit-transform: scale3d(1.05, 0.95, 1);
+                transform: scale3d(1.05, 0.95, 1);
+            }
+
+            100% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        @keyframes rubberBand {
+            0% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+
+            30% {
+                -webkit-transform: scale3d(1.25, 0.75, 1);
+                transform: scale3d(1.25, 0.75, 1);
+            }
+
+            40% {
+                -webkit-transform: scale3d(0.75, 1.25, 1);
+                transform: scale3d(0.75, 1.25, 1);
+            }
+
+            50% {
+                -webkit-transform: scale3d(1.15, 0.85, 1);
+                transform: scale3d(1.15, 0.85, 1);
+            }
+
+            65% {
+                -webkit-transform: scale3d(0.95, 1.05, 1);
+                transform: scale3d(0.95, 1.05, 1);
+            }
+
+            75% {
+                -webkit-transform: scale3d(1.05, 0.95, 1);
+                transform: scale3d(1.05, 0.95, 1);
+            }
+
+            100% {
+                -webkit-transform: scale3d(1, 1, 1);
+                transform: scale3d(1, 1, 1);
+            }
+        }
+
+        .rubberBand {
+            -webkit-animation-name: rubberBand;
+            animation-name: rubberBand;
+        }
+
+
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            margin-bottom: .5rem;
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.2;
+            color: black;
+        }
+
+        input[type=date]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            display: none;
+        }
+
+
+        .btn {
+            border: none;
+            /* Remove borders */
+            color: white;
+            /* White text */
+            padding: 12px 16px;
+            /* Some padding */
+            font-size: 16px;
+            /* Set a font size */
+            cursor: pointer;
+            /* Mouse pointer on hover */
+        }
+
+        .btn:hover {
+            background-color: RoyalBlue;
+        }
+    </style>
+
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header class="header">
+
+            <!-- Top Bar -->
+
+            <div class="top_bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="user_box ml-auto">
+                                <div class="user_box_login user_box_link"><a href="login.html">login</a></div>
+                                <!-- Todo:
+							after log in display username 
+							default will be "-"-->
+                                <div class="user_box_register user_box_link"><a href="#">Tng Zi Xiang</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+
+            <nav class="main_nav">
+                <div class="container">
+                    <div id="header_logo" class="row">
+                        <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                            <div class="logo_container">
+                                <div class="logo"><a href="index.html"><img src="resource/images/logo.png"
+                                            alt="">FlightScraper</a></div>
+                            </div>
+                            <div class="main_nav_container ml-auto">
+                                <ul class="main_nav_list">
+                                    <li class="main_nav_item"><a href="#">home</a></li>
+								<li class="main_nav_item"><a href="flight_information.html">Flight Search</a></li>
+								<li class="main_nav_item"><a href="managed_booking.html?userid=1">Manage Booking</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+        </head>
+
+        <div style="height:200px;">
+        </div>
+
+        <div id="main-container" class="container">
+            <!-- need to fix the colour -->
+            <br>
+            <div id="errorDiv"></div>
+
+            <h1 class="display-4" style="font-size: 28px;">Booking Details</h1>
+            <!-- <div class="displayprice"><h4 id ="price"></h4></div> -->
+
+
+            <br>
+            <div id="consolidateTable">
+            </div>
+
+            <br>
+            <div id="returnConsolidateTable">
+            </div>
+
+            <!-- Default form for user -->
+
+            <div id="formcontrol" class='form-group'>
+                <br>
+                <h1 class="display-4" style="font-size: 24px;">Enter your details here: </h1>
+
+                <form onsubmit="loadpassenger()" action="#" method="post" id="users">
+                    <div class="form-row">
+                        <!-- Create a loop to iterate this portion -->
+                        <!-- Refer to this link to do minimize maximise -->
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault01">First name (Given)</label>
+                            <input type="text" class="form-control" id="firstname" value="Zi" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault02">Last name (Surname)</label>
+                            <input type="text" class="form-control" id="lastname" value="Xiang" required>
+                        </div>
+                        <div class="col-md-4 mb-1">
+                            <label for="validationDefault04">Date of Birth</label>
+                            <input type="date" class="form-control" id="DOB" value="2014-02-09">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col-md-3 mb-3">
+                            <label for="validationDefault03">Passport Number</label>
+                            <input type="Number" class="form-control" id="ppnumber" required>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationDefault05">Email</label>
+                            <input type="text" class="form-control" id="email">
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <label for="validationDefault05">Membership Number</label>
+                            <input type="text" class="form-control" id="membership_num">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="True" id="terms_condition" required>
+                            <label class="form-check-label" for="invalidCheck2">
+                                Agree to terms and conditions
+                            </label>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id='updatepassenger'>Confirm</button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+                        Food Selection 🍔
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#baggage">
+                        Extra Baggage 🧳
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#seats">
+                       Select your seat ✈️
+                    </button>
+            </div>
+            </form>
+
+
+            <!-- End of default form for user-->
+
+            <!-- Passenger input form -->
+            <div id="extraPassengerDiv">
+                <br>
+                <h1 class="display-4" style="font-size: 24px;">Have a partner for your trip?</h1>
+                <br>
+                <button class="btn btn-primary" id='add_passenger'>Add More Passenger</button>
+                <div id='passengerinfo'></div>
+                <!-- End-Passenger-Input-Form -->
+
+                <div id='checkoutBtn' style='padding:20px 0px 20px 0px;'><button onclick="proceedToPayment()"
+                        type="button" class="btn btn-primary btn-lg btn-block">Proceed to Checkout</button></div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Seats -->
+    <div class="modal fade" id="seats" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Seat Arrangement</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="plane">
+                        <div class="cockpit">
+                            <h1>Please select a seat</h1>
+                        </div>
+                        <div class="exit exit--front fuselage">
+                        </div>
+                        <ol class="cabin fuselage">
+                            <li class="row row--1">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="1A" />
+                                        <label for="1A">1A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="1B" />
+                                        <label for="1B">1B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="1C" />
+                                        <label for="1C">1C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" disabled id="1D" />
+                                        <label for="1D">Occupied</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="1E" />
+                                        <label for="1E">1E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="1F" />
+                                        <label for="1F">1F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--2">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="2A" />
+                                        <label for="2A">2A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="2B" />
+                                        <label for="2B">2B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="2C" />
+                                        <label for="2C">2C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="2D" />
+                                        <label for="2D">2D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="2E" />
+                                        <label for="2E">2E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="2F" />
+                                        <label for="2F">2F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--3">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="3A" />
+                                        <label for="3A">3A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="3B" />
+                                        <label for="3B">3B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="3C" />
+                                        <label for="3C">3C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="3D" />
+                                        <label for="3D">3D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="3E" />
+                                        <label for="3E">3E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="3F" />
+                                        <label for="3F">3F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--4">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="4A" />
+                                        <label for="4A">4A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="4B" />
+                                        <label for="4B">4B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="4C" />
+                                        <label for="4C">4C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="4D" />
+                                        <label for="4D">4D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="4E" />
+                                        <label for="4E">4E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="4F" />
+                                        <label for="4F">4F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--5">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="5A" />
+                                        <label for="5A">5A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="5B" />
+                                        <label for="5B">5B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="5C" />
+                                        <label for="5C">5C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="5D" />
+                                        <label for="5D">5D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="5E" />
+                                        <label for="5E">5E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="5F" />
+                                        <label for="5F">5F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--6">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="6A" />
+                                        <label for="6A">6A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="6B" />
+                                        <label for="6B">6B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="6C" />
+                                        <label for="6C">6C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="6D" />
+                                        <label for="6D">6D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="6E" />
+                                        <label for="6E">6E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="6F" />
+                                        <label for="6F">6F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--7">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="7A" />
+                                        <label for="7A">7A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="7B" />
+                                        <label for="7B">7B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="7C" />
+                                        <label for="7C">7C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="7D" />
+                                        <label for="7D">7D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="7E" />
+                                        <label for="7E">7E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="7F" />
+                                        <label for="7F">7F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--8">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="8A" />
+                                        <label for="8A">8A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="8B" />
+                                        <label for="8B">8B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="8C" />
+                                        <label for="8C">8C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="8D" />
+                                        <label for="8D">8D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="8E" />
+                                        <label for="8E">8E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="8F" />
+                                        <label for="8F">8F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--9">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="9A" />
+                                        <label for="9A">9A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="9B" />
+                                        <label for="9B">9B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="9C" />
+                                        <label for="9C">9C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="9D" />
+                                        <label for="9D">9D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="9E" />
+                                        <label for="9E">9E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="9F" />
+                                        <label for="9F">9F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                            <li class="row row--10">
+                                <ol class="seats" type="A">
+                                    <li class="seat">
+                                        <input type="checkbox" id="10A" />
+                                        <label for="10A">10A</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="10B" />
+                                        <label for="10B">10B</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="10C" />
+                                        <label for="10C">10C</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="10D" />
+                                        <label for="10D">10D</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="10E" />
+                                        <label for="10E">10E</label>
+                                    </li>
+                                    <li class="seat">
+                                        <input type="checkbox" id="10F" />
+                                        <label for="10F">10F</label>
+                                    </li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <div class="exit exit--back fuselage">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="submit_addons" class="btn btn-primary" data-dismiss="modal">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!-- Modal Food-->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+        aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Get stuffed on board</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-group">
+                        <div class="card">
+                            <img class="card-img-top" src="./resource/images/food1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Nasi Lemak with Chicken Rendang</h5>
+                                <p class="card-text">Chicken rendang with frangrant coconut rice, complemented with hard
+                                    boiled egg and smabal chilli!</p>
+                                <br>
+                                <p class="card-text"><strong><input type="checkbox" id="food" name="food" value="food1">
+                                        SGD 17</strong></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="./resource/images/food2.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Soya Chicken Rice with Pak Chye</h5>
+                                <p class="card-text">Succlent sliced soya sauce chicken with chicken flavoured rice,
+                                    accompanied by mixed oriental vegetables</p>
+                                <p class="card-text"><strong><input type="checkbox" id="food" name="food" value="food2">
+                                        SGD 17</strong></p>
+                            </div>
+                        </div>
+                        <div class="card">
+                            <img class="card-img-top" src="./resource/images/food1.jpg" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title">Vegan Lasange Delight</h5>
+                                <p class="card-text">A rich and creamy tomato based vegan lasange with layers of pasta
+                                    and enticing garden vegetable topped with mushrooms</p>
+                                <p class="card-text"><strong><input type="checkbox" id="food" name="food" value="food3">
+                                        SGD 19</strong></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="submit_addons" class="btn btn-primary" data-dismiss="modal">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Baggage -->
+    <div class="modal fade" id="baggage" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Extra Baggage</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td>
+                                <img src="resource/images/travel.png" alt="Smiley face" border="5" width='250' height="250"
+                                class="center">
+                            </td>
+                            <td>
+                                <div>
+                                    <label for="baggagesize">
+                                        <font color="black"><strong>Baggage Size</strong></font>
+                                    </label>
+                                    <select id="baggagesize" name="baggagesize" width='100px'>
+                                        <option value="40">5kg</option>
+                                        <option value="60">10kg</option>
+                                        <option value="80">20kg</option>
+                                        <option value="100">30kg</option>
+                                    </select>
+                                    <label for='baggagesize'>
+                                        <font color="black"><strong>Total Baggage Cost</strong></font></label><br>
+                                    </label>
+                                    <input type="text" id="displayprice" value="40" name="displayprice">
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    
+                    
+                    
+                    <br>
+
+                    
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" id="submit_addons" class="btn btn-primary" data-dismiss="modal">Save
+                        changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function showError(msg) {
+            //$("#main-container").append("<h1 class=\"display-4\" style=\"font-size: 28px;\">No Flights Available. Please try searching again.</h1>");
+
+            $("#errorDiv").empty();
+            $("#errorDiv").append("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">" + msg +
+                `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>`);
+            $("#header_logo").show();
+            $(window).scrollTop(0);
+
+        }
+
+
+        // Show checkout button only when user confirm himself
+        $("#extraPassengerDiv").hide();
+
+
+
+        $('#add_passenger').click(function () {
+            create_add_passenger_form();
+        })
+
+
+        function create_add_passenger_form() {
+            $('#add_passenger').remove();
+            $('#passengerinfo').append(
+                `<div id="formcontrol" class='form-group'>
+            <form onsubmit = "loadpassenger()" action="#" method="post" id="users">
+                <div class="form-row">
+                    <!-- Create a loop to iterate this portion -->
+                    <!-- Refer to this link to do minimize maximise -->
+                    <div class="col-md-4 mb-3">
+                    <label for="validationDefault01">First name (Given)</label>
+                    <input type="text" class="form-control" id="firstname" value="Mark" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                    <label for="validationDefault02">Last name (Surname)</label>
+                    <input type="text" class="form-control" id="lastname" value="Otto" required>
+                    </div>
+                    <div class="col-md-4 mb-1">
+                        <label for="validationDefault04">Date of Birth</label>
+                        <input type="date"  class="form-control" id="DOB" value="2014-02-09">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-3 mb-3">
+                    <label for="validationDefault03">Passport Number</label>
+                    <input type="Number" class="form-control" id="ppnumber" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="validationDefault05">Email</label>
+                        <input type="text" class="form-control" id="email">
+                    </div>
+                    <div class="col-md-3 mb-3">
+                    <label for="validationDefault05">Membership Number</label>
+                    <input type="text" class="form-control" id="membership_num">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="True" id="terms_condition" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                        Agree to terms and conditions
+                    </label>
+                    </div>
+                </div>
+                <button  class="btn btn-primary" id='updatepassenger' type="submit">Confirm</button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                    Food Selection 🍔
+                </button>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#baggage">
+                    Extra Baggage 🧳
+                </button>
+                </div>
+            </form>
+        
+        
+
+        <div><button onclick='create_add_passenger_form()' class="btn btn-primary" id='add_passenger'>Add More Passenger</button></div>
+
+
+        </div>
+        
+        `
+            )
+
+            $('html').scrollTop($('html').height());
+        }
+
+        $("#baggagesize").change(function () {
+            console.log("abc")
+            var baggage_price = $("#baggagesize option:selected").val();
+            console.log(baggage_price)
+            $('#displayprice').val(baggage_price)
+        });
+
+        function myFunction() {
+            var x = document.getElementById("myDate").value;
+            document.getElementById("demo").innerHTML = x;
+        }
+
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        var bookingID = urlParams.get("bookingID")
+        var flightID = urlParams.get("flightID")
+        var flightprice = urlParams.get("price")
+        var userID = urlParams.get("userid")
+        var travellers = urlParams.get("travellers")
+
+        function loadpassenger() {
+
+            var x = document.getElementById("users").action
+                = "./booking.html?bookingID=" + bookingID + "&flightID=" + flightID + "&price=" + flightprice + "&travellers=" + travellers + "&userid=" + userID
+            submitPassenger()
+
+
+        }
+
+        function proceedToPayment() {
+            var passport = $("#ppnumber").val()
+            if (passport != "") {
+                var url = "payment.html?bookingID=" + bookingID
+                window.location.replace(url);
+            }
+        }
+
+        // document.getElementById("price").innerHTML = "Price Summary: SGD  " + price + ":00"
+
+
+        // Retrive value to populate flight information
+        $(async () => {
+            var serviceURL = "https://g8t2-kong.herokuapp.com/runAirline/get_one_flight/" + flightID
+            try {
+                const response =
+                    await fetch(
+                        serviceURL, { method: 'GET' }
+                    );
+
+                const flight_info = await response.json();
+
+                if (!flight_info || flight_info.length == 0) {
+                    showError("Unable to find your flight. Please try again later.");
+                } else {
+                    console.log(flight_info)
+                    // Outbound Display
+                    var outboundTime = flight_info.outbound_time.split(" ")
+                    var origin = flight_info.origin
+                    var destination = flight_info.destination
+                    var location = [origin, destination]
+                    $(async () => {
+                        console.log(location[0])
+                        var serviceURL = "https://g8t2-kong.herokuapp.com/runAirline/airline/" + location[0]
+                        var serviceURL1 = "https://g8t2-kong.herokuapp.com/runAirline/airline/" + location[1]
+                        try {
+                            const response =
+                                await fetch(
+                                    serviceURL, { method: "GET" }
+                                );
+
+                            const response1 =
+                                await fetch(
+                                    serviceURL1, { method: "GET" }
+                                );
+
+                            const airportInfo = await response.json();
+                            const airportInfo1 = await response1.json();
+
+                            var country = airportInfo.country
+                            var country1 = airportInfo1.country
+
+                            var airport = airportInfo.airportName
+                            var airport1 = airportInfo1.airportName
+
+                            var outboundTime = flight_info.outbound_time.split(" ")
+
+                            var inboundTime = flight_info.inbound_time.split(" ")
+
+                            var hours = Math.floor(flight_info.flightDuration / 3600 / 2 / 2)
+                            var minutes = Math.floor(flight_info.flightDuration / 3600 / 2 / 2 - hours / 60)
+
+                            if (hours > 24) {
+                                //process hour - outbound
+                                var flightduration = hours + "h " + minutes + "m + 1 stop"
+                                if (parseInt(outboundTime[1].split(":")[0]) + hours - 24 > 24) {
+                                    var newHour = parseInt(outboundTime[1].split(":")[0]) + hours - 24 - 24
+                                } else {
+                                    var newHour = parseInt(outboundTime[1].split(":")[0]) + hours - 24
+                                }
+
+                                if (newHour < 10) {
+                                    var newHour = "0" + newHour
+                                }
+
+                                //process time
+                                if (parseInt(outboundTime[1].split(":")[1]) + minutes - 60 > 60) {
+                                    var newMin = parseInt(outboundTime[1].split(":")[1]) + minutes - 60 - 60
+                                } else {
+                                    var newMin = parseInt(outboundTime[1].split(":")[1]) + minutes
+                                }
+
+                                if (newMin < 10) {
+                                    var newMin = "0" + newMin
+                                }
+                                var computetime = newHour + ":" + newMin + ":00"
+
+                                //process hour - inbound
+                                var flightduration = hours + "h " + minutes + "m + 1 stop"
+                                if (parseInt(inboundTime[1].split(":")[0]) + hours - 24 > 24) {
+                                    var newHour = parseInt(inboundTime[1].split(":")[0]) + hours - 24 - 24
+                                } else {
+                                    var newHour = parseInt(inboundTime[1].split(":")[0]) + hours - 24
+                                }
+
+                                if (newHour < 10) {
+                                    var returnnewHour = "0" + newHour
+                                }
+
+                                //inbound-process time
+                                if (parseInt(inboundTime[1].split(":")[1]) + minutes - 60 > 60) {
+                                    var newMin = parseInt(inboundTime[1].split(":")[1]) + minutes - 60 - 60
+                                } else {
+                                    var newMin = parseInt(inboundTime[1].split(":")[1]) + minutes
+                                }
+
+                                if (newMin < 10) {
+                                    var returnnewMin = "0" + newMin
+                                }
+                                var returncomputetime = returnnewHour + ":" + returnnewMin + ":00"
+
+                            } else {
+
+                                var flightduration = hours + "h " + minutes + "m "
+                                if (parseInt(outboundTime[1].split(":")[0]) + parseInt(hours) >= 24) {
+                                    var newHours = parseInt(outboundTime[1].split(":")[0]) + parseInt(hours) - 24
+                                } else {
+                                    var newHours = parseInt(outboundTime[1].split(":")[0]) + parseInt(hours)
+                                }
+
+                                if (parseInt(outboundTime[1].split(":")[1]) + parseInt(minutes) >= 60) {
+                                    var newMinutes = parseInt(outboundTime[1].split(":")[1]) + parseInt(minutes) - 60
+                                } else {
+                                    var newMinutes = parseInt(outboundTime[1].split(":")[1]) + parseInt(minutes)
+                                }
+
+                                if (newHours < 10) {
+                                    var newHours = "0" + newHours
+                                }
+
+                                if (newMinutes < 10) {
+                                    var newMinutes = "0" + newMinutes
+                                }
+
+                                var computetime = newHours + ":" + newMinutes + ":00"
+
+                                if (parseInt(inboundTime[1].split(":")[0]) + parseInt(hours) >= 24) {
+                                    var newHours = parseInt(inboundTime[1].split(":")[0]) + parseInt(hours) - 24
+                                } else {
+                                    var newHours = parseInt(inboundTime[1].split(":")[0]) + parseInt(hours)
+                                }
+
+                                if (parseInt(inboundTime[1].split(":")[1]) + parseInt(minutes) >= 60) {
+                                    var newMinutes = parseInt(inboundTime[1].split(":")[1]) + parseInt(minutes) - 60
+                                } else {
+                                    var newMinutes = parseInt(inboundTime[1].split(":")[1]) + parseInt(minutes)
+                                }
+
+                                var returnnewHours = newHours
+                                if (newHours < 10) {
+                                    var returnnewHours = "0" + newHours
+                                }
+
+                                var returnnewMinutes = newMinutes
+
+                                if (newMinutes < 10) {
+                                    var returnnewMinutes = "0" + newMinutes
+                                }
+
+                                console.log(returnnewMinutes)
+                                var returncomputetime = returnnewHours + ":" + returnnewMinutes + ":00"
+                            }
+
+                            if (flight_info.airlineId == "SQ") {
+                                var airlinecompany = " Singapore Airlines"
+                            }
+
+                            //outboundTime[1] = outboundTime[1].split(":")[0] + ":" +  outboundTime[1].split(":")[1]
+                            //outbound
+                            var firstrow =
+                                "<tr><td></td></tr>" +
+                                "<td><h3>" + flight_info.origin + "    " + outboundTime[1] + "</h3></td>" +
+                                //"<td>---------<img id='airlogo' src=resource/images/airplanelogo1.png height='30' width='50'>---------</td>" +
+                                //"<td><img id='airlogo' src=resource/images/airplanelogo1.png height='30' width='50>'></td>" +
+                                "<td></td>" +
+                                "<td><h3>" + flight_info.destination + "    " + computetime + "</h3></td>" +
+                                "<td><strong>" + airlinecompany + "</strong></td>" +
+                                "<td style='border-left:1.5px solid grey; font-size:40px;' rowspan='4'><strong>" + flight_info.airlineId + "  " + flight_info.flightNumber + "</strong></td>"
+
+                            var secondrow =
+                                "<td><strong>" + country + "</strong></td>" +
+                                "<td><img id='airlogo' src='resource/images/airplane.svg' height='50' width='50>'></td>" +
+                                "<td><strong>" + country1 + "</strong></td>" +
+                                // TODO: now current hardcode
+                                "<td> Economy </td>"
+
+                            var thirdrow =
+                                "<td>" + flight_info.outbound + "</td>" +
+                                "<td></td>" +
+                                "<td>" + flight_info.inbound + "</td>" +
+                                "<td>Boeing 777</td>"
+
+                            var fourthrow =
+                                "<td><i>" + airport + "</i></td>" +
+                                "<td></td>" +
+                                "<td><i>" + airport1 + "</i></td>" +
+                                "<td></td>" +
+                                "<tr><td></td></tr>"
+
+                            //inbound
+                            var firstrow1 =
+                                "<tr><td></td></tr>" +
+                                "<td><h3>" + flight_info.destination + "    " + inboundTime[1] + "</h3></td>" +
+                                //"<td>---------<img id='airlogo' src=resource/images/airplanelogo1.png height='30' width='50'>---------</td>" +
+                                "<td></td>" +
+                                "<td><h3>" + flight_info.origin + "    " + returncomputetime + "</h3></td>" +
+                                "<td><strong>" + airlinecompany + "</strong></td>" +
+                                "<td style='border-left:1.5px solid grey; font-size:40px;' rowspan='4'><strong>" + flight_info.airlineId + "  " + flight_info.flightNumber + "</strong></td>"
+
+                            "<td><strong>" + flight_info.airlineId + "  " + flight_info.flightNumber + "</strong></td>"
+
+                            var secondrow1 =
+                                "<td><strong>" + country1 + "</strong></td>" +
+                                "<td><img id='airlogo' src='resource/images/airplane.svg' height='50' width='50>'></td>" +
+                                "<td><strong>" + country + "</strong></td>" +
+                                // TODO: now current hardcode
+                                "<td> Economy </td>" +
+                                "<td></td>"
+
+                            var thirdrow1 =
+                                "<td>" + flight_info.inbound + "</td>" +
+                                "<td></td>" +
+                                "<td>" + flight_info.outbound + "</td>" +
+                                "<td>Boeing 777</td>" +
+                                "<td></td>"
+
+                            var fourthrow1 =
+                                "<td><i>" + airport1 + "</i></td>" +
+                                "<td></td>" +
+                                "<td><i>" + airport + "</i></td>" +
+                                "<td></td>" +
+                                "<td></td>" +
+                                "<tr><td></td></tr>"
+
+                            resultrow = "<table class= 'flightSearchResult'><tbody><tr>" + firstrow + "</tr><tr>" + secondrow + "</tr><tr>" + thirdrow + "</tr><tr>" + fourthrow + "</tr></tbody></table>"
+
+                            resultrow1 = "<table class= 'flightSearchResult'><tbody><tr>" + firstrow1 + "</tr><tr>" + secondrow1 + "</tr><tr>" + thirdrow1 + "</tr><tr>" + fourthrow1 + "</tr></tbody></table>"
+
+                            $("#consolidateTable").append(resultrow)
+
+                            $("#returnConsolidateTable").append(resultrow1)
+                        } catch (error) {
+                            // Errors when calling the service; such as network error, 
+                            // service offline, etc
+                            showError('There was a problem retrieving airline data, please try again later.<br />');
+
+                        }
+                    });
+
+                    // resultrow1 = "<table class='flightSearchResult'><tbody><tr>" + firstrow + "</tr>" + "<tr>" + secondrow + "</tr>" + "<tr>" + thirdrow + "</tr>" + "<tr>" + fourthrow + "</tr>" + "<tr>" + fifthrow + "</tr>" + "<tr>" + sixthrow + "</tr></tbody></table><br>";
+
+                    // $("#consolidateTable").append(resultrow1)
+                }
+            } catch (error) {
+                // Errors when calling the service; such as network error, 
+                // service offline, etc
+                showError('There was a problem retrieving flight data, please try again later.<br />');
+
+            } // error
+        });
+        // Input Passenger Info
+
+
+
+        async function submitPassenger() {
+            //Prevents screen from refreshing when submitting
+            event.preventDefault()
+            // Change serviceURL to your own
+            var firstname = $('#firstname').val()
+            var lastname = $("#lastname").val()
+            var DOB = $("#DOB").val()
+            var passport = $("#ppnumber").val()
+            var email = $("#email").val()
+            var membership = $("#membership_num").val()
+            var term_condition = $('#terms_condition').val()
+            var food = $('#food').val()
+            console.log(food)
+            var baggage_price = $("#displayprice").val()
+            console.log(baggage_price)
+            // Hard Coded
+            var seaatNumber = "3A"
+
+            console.log(firstname)
+            console.log(term_condition)
+
+            if (term_condition == "True") {
+                // categorize_addson
+                foodcategory = ""
+                console.log(food)
+                if (food == "food1") {
+                    foodcategory = "F1:17"
+                    console.log(foodcategory)
+                } else if (food == "food2") {
+                    foodcategory = "F2:17"
+                } else if (food == "food3") {
+                    foodcategory = "F3:19"
+                }
+
+                baggageID = ""
+                if (baggage_price == "60") {
+                    baggageID = "B10:60"
+                } else if (baggage_price == "40") {
+                    baggageID = "B5:40"
+                } else if (baggage_price == "80") {
+                    baggageID = "B20:80"
+                } else if (baggage_price == "100") {
+                    baggageID = "B30:100"
+                }
+
+    
+
+                var addonsID = baggageID + "," + foodcategory
+                var name = firstname + lastname
+
+                var serviceURL = "https://g8t2-kong.herokuapp.com/pass/addPassenger";
+
+                var foodprice = foodcategory.split(":")
+
+                console.log(foodprice)
+                if (foodprice[0] == "") {
+                    var food_cost = 0
+                } else {
+                    var food_cost = foodprice[1]
+                }
+                console.log(baggage_price)
+
+                var price = Number(flightprice) + Number(baggage_price) + Number(food_cost)
+
+                try {
+                    const response =
+                        await fetch(
+                            serviceURL, {
+                            method: 'POST',
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({
+                                passportNo: passport, name: name, email: email,
+                                DOB: DOB, bookingID: bookingID, addonsID: addonsID, parentPassengerID: userID, membership_no: membership, price: price, seatNo: seaatNumber
+                            })
+                        });
+
+                    const data = await response.json()
+                    console.log(data)
+                    if (response.ok) {
+                        // Show checkout button only when user confirm himself
+                        $("#extraPassengerDiv").show();
+                        $('html').scrollTop($('html').height());
+                    }
+                } catch (error) {
+                    // Errors when calling the service; such as network error, 
+                    // service offline, etc
+                    console.log(error.message)
+                    showError('There was a problem adding passenger, please try again later.<br />');
+
+                }
+            }
+        }
+
+    </script>
+    </div>
+
+</body>
+
+
+</html>

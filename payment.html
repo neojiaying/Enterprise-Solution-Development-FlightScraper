@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Checkout plus - One Step Checkout</title>
+    <!-- Required meta tags always come first -->
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="generator"
+        content="Checkout - One Step Checkout , Responsive Bootstrap 4 template , bootstrap 4 starter template, bootstrap4 template, checkout template" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" lang="en"
+        content="Checkout Bootstrap 4 pricing template , Responsive and Modern HTML5 Template made from bootstrap 4." />
+    <meta name="keywords" lang="en"
+        content="pricing template, bootstrap 4 template,bootstrap 4 checkout template, responsive bootstrap 4 template, bootstrap 4, bootstraping, bootstrap4, oribitthemes" />
+    <meta name="robots" content="index, follow" />
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <meta name="description" content="" />
+    <!--Font Awesome-->
+    <link rel="stylesheet" href="resource/dist/font-awesome/css/font-awesome.min.css" />
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet" type="text/css" href="resource/css_payment/main.min.css" />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="FlightScraper Project" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="resource/styles/bootstrap4/bootstrap.min.css" />
+    <link href="resource/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.css" />
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.theme.default.css" />
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/animate.css" />
+    <link rel="stylesheet" type="text/css" href="resource/styles/main_styles.css" />
+    <link rel="stylesheet" type="text/css" href="resource/styles/responsive.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=SGD"></script> -->
+    <script src="https://www.paypalobjects.com/api/checkout.js"></script>
+
+
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <!-- Latest compiled and minified JavaScript -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: "Open Sans", sans-serif;
+            font-size: 16px;
+            font-weight: 400;
+            background: #5d2f90;
+            color: black !important;
+        }
+
+        .paypal-button:not(.paypal-button-card) {
+            height: 25px;
+            min-height: 80px;
+            max-height: 500px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="loader"></div>
+
+    <main id="main" role="main">
+        <!-- Header -->
+
+        <header class="header">
+            <!-- Top Bar -->
+
+            <div class="top_bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="user_box ml-auto">
+                                <div class="user_box_login user_box_link">
+                                    <a href="login.html">login</a>
+                                </div>
+                                <!-- Todo:
+                              after log in display username 
+                              default will be "-"-->
+                                <div class="user_box_register user_box_link">
+                                    <a href="#">Tng Zi Xiang</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+
+            <nav class="main_nav">
+                <div class="container">
+                    <div id="header_logo" class="row">
+                        <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                            <div class="logo_container">
+                                <div class="logo">
+                                    <a href="#"><img src="resource/images/logo.png" alt="" />FlightScraper</a>
+                                </div>
+                            </div>
+                            <div class="main_nav_container ml-auto">
+                                <ul class="main_nav_list">
+                                    <li class="main_nav_item">
+                                        <a href="index.html">Home</a>
+                                    </li>
+                                    <li class="main_nav_item">
+                                        <a href="#">Flight Search</a>
+                                    </li>
+                                    <li class="main_nav_item">
+                                        <a href="managed_booking.html?userid=1">Manage Booking</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <br /><br /><br /><br /><br /><br /><br />
+        <section id="checkout-banner" style="background-image: url(resource/images/plane-without-moving-parts.jpg)">
+            <div class="container py-5 text-center">
+                <i class="fa fa-credit-card fa-3x text-light"></i>
+                <h2 class="my-3">Checkout form</h2>
+                <p class="lead">
+                    “That's the thing about flying: You could talk to someone for hours
+                    and never even know his name, share your deepest secrets and then
+                    never see them again.” ― Jennifer E. Smith
+                </p>
+            </div>
+        </section>
+        <section id="checkout-container">
+            <div class="container">
+                <div class="row py-5">
+                    <div class="col-md-4 order-md-2 mb-4">
+                        <h4 class="d-flex justify-content-between align-items-center mb-3">
+                            <span class="text-muted">Your cart</span>
+                            <span class="badge badge-secondary badge-pill">3</span>
+                        </h4>
+                        <ul class="list-group mb-3">
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 id="firstprod" class="my-0">Product name</h6>
+                                    <small id="firstprodbriefa" class="text-muted">Brief description</small><br>
+                                    <small id="firstprodbriefb" class="text-muted">Brief description</small>
+                                </div>
+                                <span id=firstprodprice class="text-muted">$8</span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 id="secondprod" class="my-0">Food</h6>
+                                    <small id="secondproda" class="text-muted">No add on Food</small><br>
+                                    <small id="secondprodb" class="text-muted"></small><br>
+                                    <small id="secondprodc" class="text-muted"></small><br>
+                                </div>
+                                <span id="foodprodprice" class="text-muted"><strong>SGD $0</strong></span>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                <div>
+                                    <h6 id="secondprod" class="my-0">Baggage</h6>
+                                    <small id="thirdproda" class="text-muted">No Additional Baggage</small><br>
+                                    <small id="thirdprodb" class="text-muted"></small><br>
+                                    <small id="thirdprodc" class="text-muted"></small><br>
+                                    <small id="thirdprodd" class="text-muted"></small>
+                                </div>
+                                <span id="baggageprice" class="text-muted"><strong>SGD $0</strong></span>
+                            </li>
+                            <li id="totalprice" class="list-group-item d-flex justify-content-between">
+                                <span>Total SGD</span>
+                                <strong>$20</strong>
+                            </li>
+                            <input type="hidden" id="tempprice" name="tempprice" value="500">
+                        </ul>
+                        <form class="card p-2">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Promo code" />
+                                <div class="input-group-append">
+                                    <button type="submit" class="btn btn-secondary">
+                                        Redeem
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="payment-methods">
+                            <p class="pt-4 mb-2">Payment Options</p>
+                            <hr />
+                            <ul class="list-inline d-flex">
+                                <li class="mx-1 text-info">
+                                    <i class="fa-2x fa fa-cc-visa"></i>
+                                </li>
+                                <li class="mx-1 text-info">
+                                    <i class="fa-2x fa fa-cc-stripe"></i>
+                                </li>
+                                <li class="mx-1 text-info">
+                                    <i class="fa-2x fa fa-cc-paypal"></i>
+                                </li>
+                                <li class="mx-1 text-info">
+                                    <i class="fa-2x fa fa-cc-jcb"></i>
+                                </li>
+                                <li class="mx-1 text-info">
+                                    <i class="fa-2x fa fa-cc-discover"></i>
+                                </li>
+                                <li class="mx-1 text-info">
+                                    <i class="fa-2x fa fa-cc-amex"></i>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-8 order-md-1">
+                        <h4 class="mb-3">Billing address</h4>
+                        <form class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="firstName">First name</label>
+                                    <input type="text" class="form-control" id="firstName" placeholder="" value=""
+                                        required />
+                                    <div class="invalid-feedback">
+                                        Valid first name is required.
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="lastName">Last name</label>
+                                    <input type="text" class="form-control" id="lastName" placeholder="" value=""
+                                        required />
+                                    <div class="invalid-feedback">
+                                        Valid last name is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="username">Email</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">@</span>
+                                    </div>
+                                    <input type="text" class="form-control" id="username" placeholder="you@example.com"
+                                        required />
+                                    <div class="invalid-feedback" style="width: 100%;">
+                                        Your username is required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email">Alternative Email
+                                    <span class="text-muted"></span>
+                                </label>
+                                <input type="email" class="form-control" id="email" placeholder="you@example.com" required/>
+                                <div class="invalid-feedback">
+                                    Please enter a valid email address for shipping updates.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="1234 Main St"
+                                    required />
+                                <div class="invalid-feedback">
+                                    Please enter your shipping address.
+                                </div>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="address2">Address 2<span class="text-muted">(Optional)</span>
+                                </label>
+                                <input type="text" class="form-control" id="address2"
+                                    placeholder="Apartment or suite" />
+                            </div>
+
+
+                            <!-- Can think of way to populate this -->
+                            <div class="row">
+                                <div class="col-md-5 mb-3">
+                                    <label for="country">Country</label>
+                                    <select class="custom-select d-block w-100" id="country" required>
+                                        <option value="">Choose...</option>
+                                        <option>United States</option>
+                                        <option>Singapore</option>
+                                        <option>Thailand</option>
+                                        <option>China</option>
+
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        Please select a valid country.
+                                    </div>
+                                </div>
+                                <div class="col-md-3 mb-3">
+                                    <label for="zip">Zip</label>
+                                    <input type="text" class="form-control" id="zip" placeholder="" required />
+                                    <div class="invalid-feedback">
+                                        Zip code required.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <h4 class="mb-3">Payment</h4>
+
+                            <div class="d-block my-3">
+                                <div class="custom-control custom-radio">
+                                    <input id="credit" value='credit' name="paymentMethod" type="radio"
+                                        class="custom-control-input" checked required />
+                                    <label class="custom-control-label" for="credit">Credit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="debit" value='debit' name="paymentMethod" type="radio"
+                                        class="custom-control-input" required />
+                                    <label class="custom-control-label" for="debit">Debit card</label>
+                                </div>
+                                <div class="custom-control custom-radio">
+                                    <input id="paypal" value='paypal' name="paymentMethod" type="radio"
+                                        class="custom-control-input" required />
+                                    <label class="custom-control-label" for="paypal">Paypal</label><br>
+                                </div>
+                                <br>
+                                <div id="paypal-button-container"></div>
+                            </div>
+                            <div id="card_info" class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-name">Name on card</label>
+                                    <input type="text" class="form-control" id="cc-name" placeholder="" required />
+                                    <small class="text-muted">Full name as displayed on card</small>
+                                    <div class="invalid-feedback">
+                                        Name on card is required
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="cc-number">Credit card number</label>
+                                    <input type="text" class="form-control" id="cc-number" placeholder="" required />
+                                    <div class="invalid-feedback">
+                                        Credit card number is required
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="card_expiry" class="row">
+                                <div class="col-md-3 mb-3">
+                                    <label for="cc-expiration">Expiration</label>
+                                    <input type="date" class="form-control" id="expirydate" value="2014-02-09" required>
+                                    <div class="invalid-feedback">
+                                        Expiration date required
+                                    </div>
+                                </div>
+                                <div id="card_code" class="col-md-3 mb-3">
+                                    <label for="cc-expiration">CVV</label>
+                                    <input type="text" class="form-control" id="cc-cvv" placeholder="" required />
+                                    <div class="invalid-feedback">Security code required
+                                    </div>
+                                </div>
+                            </div>
+                            <hr class="mb-4" />
+                            <button id="paybutton" class="btn btn-primary btn-lg btn-block" type="submit">
+                                <i class="fa fa-credit-card"></i> Continue to checkout
+                            </button>
+                            </hr>
+                            <hr class="mb-4" />
+                            
+                            </hr>
+                        </form>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <a href="#" class="btn btn-primary scrollUp">
+            <i class="fa fa-arrow-circle-o-up"></i>
+        </a>
+    </main>
+
+    <script>
+
+        // Toggle to show the radio button changes
+        $('#paypal-button-container').hide();
+
+        
+        // Retrieve all passenger info under this booking ID 
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString)
+        var bookingID = urlParams.get("bookingID")
+
+        $(async () => {
+            console.log("ABC")
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString)
+            var bookingID = urlParams.get("bookingID")
+            var serviceURL = "https://g8t2-kong.herokuapp.com/pass/passenger/" + bookingID;
+
+            try {
+                const response =
+                    await fetch(
+                        serviceURL, { method: 'GET' }
+                    );
+                const all_passenger_info = await response.json();
+                var passenger = all_passenger_info.passenger_info
+                console.log(passenger)
+                if (!passenger) {
+                    showError("Books list empty or undefined");
+                } else {
+                    var final_price = 0
+                    for (var i = 0; i < passenger.length; i++) {
+                        var pass_detail = passenger[i]
+                        var addons = pass_detail.addonsID
+                        var price = pass_detail.price
+                        console.log(pass_detail)
+                        console.log("price" +price)
+                        final_price += Number(price)
+                        console.log(final_price)
+                        // Calculate additional Price Upgrade
+                        var additional_upgrade = 0
+                        var matchvalue = { "F1": 0, "F2": 0, "F3": 0, "B5": 0, "B10": 0, "B20": 0, "B30": 0 }
+                        if (addons != "") {
+                            var adds_item = addons.split(",")
+                            if (adds_item.length > 1) {
+                                var first_upgrade = adds_item[0].split(":")
+                                var second_upgrade = adds_item[1].split(":")
+                                matchvalue[first_upgrade[0]] += 1
+                                matchvalue[second_upgrade[0]] += 1
+                                additional_upgrade += Number(first_upgrade[1])     
+                                additional_upgrade += Number(second_upgrade[1])
+                            } else {
+                                var first_upgrade = adds_item[0].split(":")
+                                upgrade_item += second_upgrade[0] + " "
+                                matchvalue[first_upgrade[0]] += 1
+                                additional_upgrade += Number(second_upgrade[1])
+                            }
+                        }
+                    }
+                   
+                    fares = final_price * 0.7   
+                    taxes = final_price * 0.3
+                    $('#firstprod').innerhtml = fares
+                    document.getElementById("firstprod").innerHTML = "Flight Price "
+                    document.getElementById("firstprodbriefa").innerHTML = "Fares    x " + passenger.length + " SGD <strong>$" + fares.toFixed(2)+ "</strong>"
+                    document.getElementById("firstprodbriefb").innerHTML = "Taxes    x " + passenger.length + " SGD <strong>$" + taxes.toFixed(2) + "</strong>"
+                    document.getElementById("firstprodprice").innerHTML = "<strong>SGD  $" + price + "</strong>"
+
+                    counter = 0
+                    tempcounter = 0
+                    foodtotal = 0
+                    baggage = 0
+                    tempvalue = ""
+                    console.log(matchvalue)
+                    for (var key in matchvalue) {
+                        if (matchvalue[key] > 0 && counter == 0) {
+                            tempvalue = 1
+                            console.log(key)
+                            if (key == "F1" && tempvalue == 1) {
+                                var value = matchvalue[key]
+                                document.getElementById("secondproda").innerHTML = "Nasi Lemak " + value + "x" + "SGD <strong>$17</strong>"
+                                foodtotal += 17 * Number(value)
+                            } else if (key == "F2" && tempvalue == 1) {
+                                var value = matchvalue[key]
+                                foodtotal += 17 * Number(value)
+                                document.getElementById("secondprodb").innerHTML = "Soya Chicken Rice " + value + "x" + "SGD <strong>$17</strong>"
+                            } else if (key == "F3" && tempvalue == 1) {
+                                var value = matchvalue[key]
+                                foodtotal += 19 * Number(value)
+                                document.getElementById("secondprodc").innerHTML = "Vegan Lasage " + value + "x" + "SGD <strong>$19</strong>"
+                            } else if (key == "F2") {
+                                var value = matchvalue[key]
+                                foodtotal += 17 * Number(value)
+                                document.getElementById("secondprodb").innerHTML = "Soya Chicken Rice " + value + "x" + "SGD <strong>$17</strong>"
+                            } else if (key == "F3") {
+                                var value = matchvalue[key]
+                                foodtotal += 19 * Number(value)
+                                document.getElementById("secondprodbriefc").innerHTML = "Soya Chicken Rice " + value + "x" + "SGD <strong>$17</strong>"
+                            } else if (key == "B5") {
+                                var value = matchvalue[key]
+                                console.log(value)
+                                baggage += Number(value) * 40
+                                document.getElementById("thirdproda").innerHTML = "Weight 5kg " + value + "x" + "SGD <strong>$40</strong>"
+                            } else if (key == "B10") {
+                                var value = matchvalue[key]
+                                baggage += Number(value) * 60
+                                document.getElementById("thirdprodb").innerHTML = "Weight 10kg " + value + "x" + "SGD <strong>$60</strong>"
+                            } else if (key == "B20") {
+                                var value = matchvalue[key]
+                                baggage += Number(value) * 80
+                                document.getElementById("thirdprodc").innerHTML = "Weight 20kg " + value + "x" + "SGD <strong>$80</strong>"
+                            } else if (key == "B30") {
+                                var value = matchvalue[key]
+                                baggage += Number(value) * 100
+                                document.getElementById("thirdprodd").innerHTML = "Weight 20kg " + value + "x" + "SGD <strong>$100</strong>"
+                            }
+                        }
+                    }
+                    if (foodtotal > 0){
+                        document.getElementById("foodprodprice").innerHTML = "<strong>SGD $" + foodtotal + "</strong>"
+                    } 
+                    if (baggage > 0){
+                        document.getElementById("baggageprice").innerHTML = "<strong>SGD $" + baggage + "</strong>"
+                    }
+                   
+                  
+                    totalprice = Number(final_price) + Number(baggage) + Number(foodtotal)
+                    document.getElementById("totalprice").innerHTML = "TOTAL SGD <strong>$" + totalprice + "</strong>"
+                    $("#tempprice").val(totalprice)
+                }
+            } catch (error) {
+                // Errors when calling the service; such as network error, 
+                // service offline, etc
+                showError
+                    ('There is a problem retrieving books data, please try again later.<br />' + error);
+            } // error
+        });
+
+        // Paypal Logic
+        paypal.Button.render({
+
+        env: 'sandbox', // Or 'sandbox'
+
+        commit: true, // Show a 'Pay Now' button
+
+        payment: function() {
+
+            var email = $('#email').val()
+            var address = $('#address').val()
+            var country = $('#country').val()
+            var zip = $('#zip').val()
+
+            // Optional Input
+            var cc_name = $('#cc-name').val()
+            var cc_number = $('#cc-number').val()
+            var expirydate = $('#expirydate').val()
+            var cvv = $('#cc-cvv').val()
+            var total_flight_cost = $('#tempprice').val()
+
+            data1 = {bookingID: bookingID, email: email , billing_address: address,
+                        country: country, zip: zip, total_cost: total_flight_cost , name_on_card: cc_name, card_number:cc_number , exp_date: expirydate, cvv: cvv}
+            
+            console.log(total_flight_cost)
+            var CREATE_PAYMENT_URL  = 'https://g8t2-kong.herokuapp.com/payment/pay/' + total_flight_cost 
+
+            return paypal.request.post(CREATE_PAYMENT_URL).then(function(data) {
+                return data.paymentID;
+            });
+        },
+        onAuthorize: function(data) {
+
+            var EXECUTE_PAYMENT_URL = 'https://g8t2-kong.herokuapp.com/payment/execute_payment';
+            return paypal.request.post(EXECUTE_PAYMENT_URL, {
+                paymentID: data.paymentID,
+                payerID:   data.payerID
+            }).then(function(res) {
+                if (res.success == true){
+                    // var total_flight_cost = $('#tempprice').val()
+                    submitPaymentInfo(data1)
+                    console.log("Success")
+                    var total_flight_cost = data1.total_cost
+                    var email = data1.email
+                    var url = "receipt.html?bookingID="+bookingID+"&totalprice="+total_flight_cost+"&email="+email
+                    console.log(url)
+                    window.location.replace(url);
+                } else {
+                    console.alert("Payment Unsuccessful! Please try again")
+                }
+                
+            });
+        }
+}, '#paypal-button-container');
+
+        $("#paybutton").click(function() {
+            submitPaymentInfo()
+        });
+
+        $('input[type=radio][name=paymentMethod]').change(function () {
+            var payment_type = $(this).val()
+            $('#paypal-button-container').hide()
+            if (payment_type == "credit" || payment_type == "debit") {
+                $('#paybutton').show()
+                $('#card_expiry').show()
+                $('#card_code').show()
+                $('#card_info').show()
+            } else {
+                $('#paybutton').hide()
+                $('#card_expiry').hide()
+                $('#card_code').hide()
+                $('#card_info').hide()
+                $('#paypal-button-container').show()
+
+            }
+        })
+
+
+       
+    
+        async function submitPaymentInfo(data){
+            event.preventDefault()            
+            var serviceURL = "https://g8t2-kong.herokuapp.com/payment/addpayment"
+            console.log(data)
+            try {
+                const response = 
+                await fetch(
+                    serviceURL, {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(data)
+                });
+                console.log(response)
+                const data1 = await response.json()
+                console.log(data1)
+                if (response.ok){
+                    console.log("All is good")
+                }
+            } catch (error) {
+                // Errors when calling the service; such as network error, 
+                // service offline, etc
+                console.log(error.message)
+                showError
+                ('There is a problem sending passenger, please try again later.<br />'+error);
+
+            } 
+        }
+
+    </script>
+    
+    <!-- jQuery first, then Bootstrap JS. -->
+    <script src="resource/dist/jquery/jquery.min.js"></script>
+    <script src="resource/dist/popper/popper.min.js" integrity=""></script>
+    <script src="resource/dist/bootstrap/js/bootstrap.min.js"></script>
+    <script src="resource/js/main.min.js"></script>
+    <script src="resource/js/scrollable.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
+    <script src="resource/js/scrollable.js"></script>
+    <script src="qrcode/qrcode.js"></script>
+    <script src="qrcode/qrcode.min.js"></script>
+
+
+
+    <style>
+        @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css";
+
+        body {
+            text-align: center;
+            height: 500%;
+            align-content: center;
+        }
+
+        html {
+            height: 20%
+        }
+
+        #bookingID {
+            text-align: center;
+        }
+
+        .bg {
+            /* The image used */
+            background-image: url("./resource/images/receipt.jpg");
+
+            /* Full height */
+            height: 120%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .container {
+            /* remember to set a width */
+            margin-right: auto;
+            margin-left: auto;
+            border: 4px solid grey;
+            border-radius: 10px;
+            margin-top: 15px;
+            margin-bottom: 15px;
+            background-color: white;
+            text-align: center;
+        }
+
+        .ticket {
+            display: inline-block;
+            text-align: center;
+            width: 500px;
+            margin: 20px;
+            background-color: #273138;
+            border-radius: 10px;
+            color: #fff;
+            font-family: Helvetica Neue;
+            font-weight: 300;
+            letter-spacing: 1px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticket header {
+            position: relative;
+            background-color: #1b252e;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .ticket header .company-name {
+            line-height: 20px;
+            text-align: center;
+        }
+
+        .ticket header .gate {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-weight: 400;
+            line-height: 18px;
+            text-align: center;
+            font-size: 12px;
+        }
+
+        .ticket header:after {
+            content: "";
+            width: 0px;
+            height: 0px;
+            background-color: #fff;
+            position: relative;
+            bottom: -8px;
+            right: -8px;
+            border-radius: 50%;
+            box-shadow: inset 12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticket header:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            background-color: #fff;
+            position: relative;
+            bottom: -8px;
+            left: -8px;
+            border-radius: 50%;
+            box-shadow: inset -12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+        }
+
+        .ticket .airports {
+            padding: 5px 10px 10px 10px;
+            height: 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .ticket .airports .airport {
+            position: relative;
+            margin: 10px;
+            text-align: center;
+            display: inline-block;
+        }
+
+        .ticket .airports .airport .airport-name {
+            color: #29a8eb;
+            font-size: 12px;
+            font-weight: 400;
+            text-align: center;
+        }
+
+        .ticket .airports .airport .airport-code {
+            font-size: 32px;
+            font-weight: 400;
+            margin: 5px 0;
+            text-align: center;
+        }
+
+        .ticket .airports .airport .dep-arr-label {
+            color: #9299a0;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+        }
+
+        .ticket .airports .airport .time {
+            font-size: 10px;
+            color: #9299a0;
+            text-align: center;
+        }
+
+        .ticket .airports .airport:first-child {
+            margin-right: 40%;
+        }
+
+        /* .ticket .airports .airport:first-child:after {
+  font-family: FontAwesome;
+  color: white;
+  content: "";
+  position: absolute;
+  font-size: 55px;
+  top: calc(50% - 25px);
+  right: -150%;
+  text-align: center;
+} */
+
+        .ticket .airports:after {
+            content: "";
+            width: 0px;
+            height: 0px;
+            background-color: #fff;
+            position: absolute;
+            bottom: -8px;
+            right: -8px;
+            border-radius: 50%;
+            box-shadow: inset 12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .ticket .airports:before {
+            content: "";
+            width: 0px;
+            height: 0px;
+            background-color: #fff;
+            position: absolute;
+            bottom: -8px;
+            left: -8px;
+            border-radius: 50%;
+            box-shadow: inset -12px 0px 18px -11px rgba(0, 0, 0, 0.5);
+            text-align: center;
+        }
+
+        .ticket .place {
+            padding: 10px;
+            text-align: center;
+        }
+
+        .ticket .place-block {
+            display: inline-block;
+            margin: 10px 30px;
+        }
+
+        .ticket .place-block .place-label {
+            color: #29a8eb;
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .ticket .place-block .place-value {
+            color: #9299a0;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .ticket .qr {
+            width: 220px;
+            margin: 10px auto;
+            border-radius: 1px;
+            overflow: hidden;
+        }
+
+        .ticket .qr img {
+            width: 80%;
+            height: 80%;
+            display: initial !important;
+        }
+
+        .ticket.inverse {
+            background-color: #f8f8f8;
+        }
+
+        .ticket.inverse header {
+            background-color: #29a8eb;
+        }
+
+        .ticket.inverse .airports {
+            border-bottom-color: #d3d6da;
+        }
+
+        .ticket.inverse .airport:first-child:after {
+            color: #d3d6da;
+        }
+
+        .ticket.inverse .airport .airport-code {
+            color: #707884;
+            font-weight: 500;
+        }
+
+        #label {
+            color: #29a8eb;
+            text-transform: uppercase;
+            font-weight: 400;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="bg">
+        <!-- <div class="container">
+        <h4>Flight Booked</h4>
+        <h6 id="bookingID" value="">ID 134565412</h6> -->
+
+        <div class="ticket">
+            <header>
+                <div id="airline" class="company-name">
+                    Singapore Airline <div><span id='bookingID'><strong>ID 134565412</strong><span></span></div>
+                </div>
+                <div>
+                </div>
+            </header>
+            <section class="airports">
+                <div class="airport">
+                    <div class="airport-name">
+                        Origin
+                    </div>
+                    <div id="origin" class="airport-code">
+                        CLT
+                    </div>
+                    <div class="dep-arr-label">
+                        Outbound
+                    </div>
+                    <div id='outbound' class="time">
+                        7:45am
+                    </div>
+
+
+                </div>
+
+                <div class="airport">
+                    <div class="airport-name">
+                        Destination
+                    </div>
+                    <div id="destination" class="airport-code">
+                        TPA
+                    </div>
+                    <div class="dep-arr-label">
+                        ----
+                        <div id='outboundtime' class="time">
+                            9:15am
+                        </div>
+                    </div>
+
+            </section>
+
+            <br>
+            <section class="airports">
+                <div class="airport">
+                    <div id='returnorigin' class="airport-code">
+                        CLT
+                    </div>
+                    <div class="dep-arr-label">
+                        Outbound
+                    </div>
+                    <div id='inbound' class="time">
+
+                    </div>
+                </div>
+                <div class="airport">
+                    <div id='returndestination' class="airport-code">
+                        TPA
+                    </div>
+                    <div class="dep-arr-label">
+                        ----
+                    </div>
+                    <div id='inboundtime' class="time">
+                        9:15am
+                    </div>
+                </div>
+            </section>
+            <br>
+
+            <header>
+                <div id="label" class="company-name">
+                    Passenger Detail
+                </div>
+                <div id='email'>
+                    Tng Zi Xiang
+                </div>
+                <br>
+                <div id="label" class="company-name">
+                    Grand Total
+                </div>
+                <div id='price'>
+                    <strong>SGD 500</strong>
+                </div>
+            </header>
+
+
+            <section class="place">
+                <div class="qr" id='qrcode'>
+                    <script type="text/javascript">
+                        const queryString = window.location.search;
+                        const urlParams = new URLSearchParams(queryString)
+                        var bookingID = urlParams.get("bookingID")
+                        new QRCode(document.getElementById("qrcode"), "https://flightscraper.live/boarding_pass.html?bookingID=" + bookingID)
+                    </script>
+                    <!--<img src="http://www.classtools.net/QR/pics/qr.png" width='50px' height='50px'/>-->
+                </div>
+            </section>
+
+            <button id="continue" type="button" class="btn btn-primary btn-lg btn-block">Continue</button>
+
+        </div>
+
+        <script>
+
+
+            // const queryString = window.location.search;
+            // const urlParams = new URLSearchParams(queryString)
+            // var bookingID = urlParams.get("bookingID")
+            var total_price = urlParams.get("totalprice")
+            var email = urlParams.get("email")
+            $("#bookingID").html("Booking ID: " + bookingID)
+            $('#continue').click(function () {
+                window.location.href = "index.html"
+            })
+
+
+            $(async () => {
+                // Change serviceURL to your own
+                var serviceURL = "https://g8t2-kong.herokuapp.com/booking/" + bookingID
+                try {
+                    const response =
+                        await fetch(
+                            serviceURL, { method: 'GET' }
+                        );
+                    const booking_info = await response.json()
+                    console.log(booking_info)
+                    var flightID = booking_info.flightID
+
+                    var serviceURL = "https://g8t2-kong.herokuapp.com/runAirline/get_one_flight/" + flightID
+                    try {
+                        const response = await fetch(serviceURL, { method: 'GET' });
+                        const flight_info = await response.json()
+                        console.log(flight_info)
+                        var airlineID = flight_info.airlineID
+                        var origin = flight_info.origin
+                        var destination = flight_info.destination
+                        var inbound = flight_info.inbound
+                        var outbound = flight_info.outbound
+                        var inboundTimeDate = flight_info.inbound_time
+                        var outboundTimeDate = flight_info.outbound_time
+                        var inboundTime = inboundTimeDate.split(" ")
+                        var outboundTime = outboundTimeDate.split(" ")
+
+                        console.log(destination)
+
+
+                        $("#origin").html(origin + " ")
+                        $("#destination").html(destination)
+                        $("#outbound").html(outbound)
+                        $("#returnorigin").html(destination)
+                        $("#returndestination").html(origin + " ")
+                        $("#inbound").html(inbound)
+                        $("#outboundtime").html(outboundTime[1])
+                        $("#inboundtime").html(inboundTime[1])
+                        $("#email").html(email)
+                        $('#price').html("<strong>SGD " + total_price + "</strong>")
+
+                        if (airlineID == "SQ") {
+                            $("#ariline").html("Singapore Airline")
+                        }
+                    } catch (error) {
+                        showError('There is a problem retrieving books data, please try again later.<br />' + error);
+                    }
+        
+
+                } catch (error) {
+                    // Errors when calling the service; such as network error, 
+                    // service offline, etc
+                    showError
+                        ('There is a problem retrieving books data, please try again later.<br />' + error);
+
+                } // error
+            });
+
+
+
+
+
+
+
+
+
+
+        </script>
+
+
+</body>
+
+</html>

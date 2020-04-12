@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>FlightScraper</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="FlightScraper Project">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="resource/styles/bootstrap4/bootstrap.min.css">
+    <link href="resource/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/animate.css">
+    <link rel="stylesheet" type="text/css" href="resource/styles/main_styles.css">
+    <link rel="stylesheet" type="text/css" href="resource/styles/responsive.css">
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+        integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut"
+        crossorigin="anonymous"></script>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+        integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" href="resource/css/boarding_pass.css">
+    <script src="resource/js/scrollable.js"></script>
+
+
+
+</head>
+
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+        <header id="header_logo" class="header">
+
+            <!-- Top Bar -->
+
+            <div class="top_bar">
+                <div class="container">
+                    <div class="row">
+                        <div class="col d-flex flex-row">
+                            <div class="user_box ml-auto">
+                                <div class="user_box_login user_box_link"><a href="login.html">Login</a></div>
+                                <!-- Todo:
+							after log in display username 
+							default will be "-"-->
+                                <div class="user_box_register user_box_link"><a href="#">Tng Zi Xiang</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Navigation -->
+
+            <nav class="main_nav">
+                <div class="container">
+                    <div id="header_logo" class="row">
+                        <div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+                            <div class="logo_container">
+                                <div class="logo"><a href="index.html"><img src="resource/images/logo.png" alt="">FlightScraper</a></div>
+                            </div>
+                            <div class="main_nav_container ml-auto">
+                                <ul class="main_nav_list">
+                                    <li class="main_nav_item"><a href="index.html">home</a></li>
+                                    <li class="main_nav_item"><a href="flight_information.html">Flight Search</a></li>
+                                    <li class="main_nav_item"><a href="managed_booking.html?userid=1">managed booking</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>	
+            </nav>
+
+        </header>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+
+        <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+        <button id="printPageButton" class="btn btn-primary"  onClick="window.print();"><img src="resource\images\icons\printing.svg"/><br>Print</button>
+        <br>
+        <br>
+
+        <div id="target">
+            <!-- all divs will append here -->
+        </div>
+
+
+        <script>
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            var bookingID = urlParams.get("bookingID")
+
+            $(async () => {
+                var serviceURL4 = "https://g8t2-kong.herokuapp.com/pass/passenger/" + bookingID;
+                try {
+                    const response =
+                        await fetch(
+                            serviceURL4, { method: 'GET' }
+                        );
+                    const data = await response.json();
+                    // console.log(data);
+                    var numPassengers = data.passenger_info.length;
+                    // console.log(data.passenger_info.length);
+
+
+
+                } catch (error) {
+                    console.log("error");
+                }
+
+
+                
+                for (var i = 0; i < numPassengers; i++) {
+
+            
+                    var serviceURL = "https://g8t2-kong.herokuapp.com/booking/" + bookingID;
+
+                    try {
+                        const response =
+                            await fetch(
+                                serviceURL, { method: 'GET' }
+                            );
+                        const data = await response.json();
+                        //    console.log(data);
+
+
+                        var flightID = data.flightID;
+
+
+
+                    } catch (error) {
+                        console.log("error");
+                    } // error
+
+                    var serviceURL2 = "https://g8t2-kong.herokuapp.com/runAirline/get_one_flight/" + flightID;
+
+                    try {
+                        const response =
+                            await fetch(
+                                serviceURL2, { method: 'GET' }
+                            );
+                        const data = await response.json();
+
+                        var origin = data.origin;
+
+                        var destination = data.destination;
+
+                        var outbound = data.outbound;
+
+                        var flightNumber = data.flightNumber;
+
+                        var airlineId = data.airlineId;
+
+
+                    } catch (error) {
+                        console.log("error");
+                    }
+
+
+                    var serviceURL3 = " https://g8t2-kong.herokuapp.com/pass/passenger/" + bookingID;
+
+                    try {
+                        const response =
+                            await fetch(
+                                serviceURL3, { method: 'GET' }
+                            );
+                        const data = await response.json();
+                        var passenger_info = data.passenger_info;
+
+
+
+                        nameList = []
+                        for (var j = 0; j < passenger_info.length; j++) {
+
+                            nameList.push(data.passenger_info[j].name);
+                        }
+
+                        seatList = []
+                        for (var x = 0; x < passenger_info.length; x++) {
+
+                            seatList.push(data.passenger_info[x].seatNo);
+                        }
+                        // console.log(seat_list);
+
+                    } catch (error) {
+                        console.log("error");
+                    }
+
+                    var header = '<div class="ticket inverse">' +
+                        '<header>' + '<div class="company-name">' + 'Singapore Airlines' + '</div>' +
+                        '<div class="gate">' + '<div>' + 'Gate' + '</div>' + '<div>' + 'B4' + '</div>' + '</div>' + '</header>' +
+                        '<section class="airports">' +
+                        '<div class="airport">' + '<div class="airport-code">' + origin + '</div>' +
+                        '<div class="dep-arr-label" >' +
+                        'Departing' + '</div>' + '<div class="time">' + outbound + '</div>' + '</div>' +
+                        '<div class="airport">' +
+                        '<div class="airport-code">' + destination + '</div>' +
+                        '<div class="dep-arr-label">' + 'Arriving' + '</div>' +
+                        '<div class="time">' + outbound + '</div>' + '</div>' + '</section>' +
+                        '<section class="place">' +
+                        '<div class="place-block">' + '<div class="place-label">' + 'Passenger' + '</div>' +
+                        '<div class="place-value">' + nameList[i] + '</div>' + '</div>' +
+                        '<div class="place-block">' + '<div class="place-label">' + 'Flight' + '</div>' +
+                        '<div class="place-value">' + airlineId + flightNumber + '</div>' + '</div>' +
+                        '<div class="place-block">' +
+                        '<div class="place-label">' + 'Seat' + '</div>' + '<div class="place-value">' + seatList[i] + '</div>' + '</div>' +
+                        '<div class="qr">' + ' <img src="http://www.classtools.net/QR/pics/qr.png"/>' + '</div>' + '</section>' + '</div>';
+
+                    $("#target").append(header);
+                }
+
+            });
+
+
+
+        </script>
+
+</body>

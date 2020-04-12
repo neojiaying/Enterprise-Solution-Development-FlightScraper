@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FlightScraper</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="FlightScraper Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resource/styles/bootstrap4/bootstrap.min.css">
+<link href="resource/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="resource/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="resource/styles/responsive.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="resource/js/scrollable.js"></script>
+
+</head>
+
+<body>
+
+	<style>
+		input[type=date]::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			display: none;
+		}
+	</style>
+<div class="super_container">
+	
+	<!-- Header -->
+	
+	<header id="header_logo" class="header">
+
+		<!-- Top Bar -->
+
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="user_box ml-auto">
+							<div class="user_box_login user_box_link"><a href="login.html">Login</a></div>
+							<!-- Todo:
+							after log in display username 
+							default will be "-"-->
+							<div class="user_box_register user_box_link"><a href="#">Tng Zi Xiang</a></div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+		<!-- Main Navigation -->
+
+		<nav class="main_nav">
+			<div class="container">
+				<div class="row">
+					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+						<div class="logo_container">
+							<div class="logo"><a href="#"><img src="resource/images/logo.png" alt="">FlightScraper</a></div>
+						</div>
+						<div class="main_nav_container ml-auto">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="#">home</a></li>
+								<li class="main_nav_item"><a href="flight_information.html">Flight Search</a></li>
+								<li class="main_nav_item"><a href="managed_booking.html?userid=1">Manage Booking</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</nav>
+
+	</header>
+
+	<!-- Home -->
+
+	<div class="home">
+		
+		<!-- Home Slider -->
+
+		<div class="home_slider_container">
+			
+			<div class="owl-carousel owl-theme home_slider">
+
+				<!-- Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url('./resource/images/home_slider.jpg')"></div>
+				
+				</div>
+
+				<!-- Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url('./resource/images/listing_hotel.jpg')"></div>
+
+					
+				</div>
+
+				<!-- Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url('./resource/images/elements_background.jpg')"></div>
+				</div>
+
+				<!-- Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url('./resource/images/plane-without-moving-parts.jpg')"></div>
+				</div>
+
+				<!-- Slider Item -->
+				<div class="owl-item home_slider_item">
+					<div class="home_slider_background" style="background-image:url('./resource/images/cta.jpg')"></div>
+				</div>
+
+			</div>
+			
+			<!-- Home Slider Nav - Prev -->
+			<div class="home_slider_nav home_slider_prev">
+				<svg version="1.1" id="Layer_2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+					width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+					<defs>
+						<linearGradient id='home_grad_prev'>
+							<stop offset='0%' stop-color='#fa9e1b'/>
+							<stop offset='100%' stop-color='#8d4fff'/>
+						</linearGradient>
+					</defs>
+					<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
+					M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
+					C22.545,2,26,5.541,26,9.909V23.091z"/>
+					<polygon class="nav_arrow" fill="#F3F6F9" points="15.044,22.222 16.377,20.888 12.374,16.885 16.377,12.882 15.044,11.55 9.708,16.885 11.04,18.219 
+					11.042,18.219 "/>
+				</svg>
+			</div>
+			
+			<!-- Home Slider Nav - Next -->
+			<div class="home_slider_nav home_slider_next">
+				<svg version="1.1" id="Layer_3" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+				width="28px" height="33px" viewBox="0 0 28 33" enable-background="new 0 0 28 33" xml:space="preserve">
+					<defs>
+						<linearGradient id='home_grad_next'>
+							<stop offset='0%' stop-color='#fa9e1b'/>
+							<stop offset='100%' stop-color='#8d4fff'/>
+						</linearGradient>
+					</defs>
+				<path class="nav_path" fill="#F3F6F9" d="M19,0H9C4.029,0,0,4.029,0,9v15c0,4.971,4.029,9,9,9h10c4.97,0,9-4.029,9-9V9C28,4.029,23.97,0,19,0z
+				M26,23.091C26,27.459,22.545,31,18.285,31H9.714C5.454,31,2,27.459,2,23.091V9.909C2,5.541,5.454,2,9.714,2h8.571
+				C22.545,2,26,5.541,26,9.909V23.091z"/>
+				<polygon class="nav_arrow" fill="#F3F6F9" points="13.044,11.551 11.71,12.885 15.714,16.888 11.71,20.891 13.044,22.224 18.379,16.888 17.048,15.554 
+				17.046,15.554 "/>
+				</svg>
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Search -->
+
+	<div class="search">
+		<!-- Search Contents -->
+		<div class="container fill_height">
+			<div class="row fill_height">
+				<div class="col fill_height">
+
+					<!-- Search Tabs -->
+
+					<div class="search_tabs_container">
+						<div class="search_tabs d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+							<div class="search_tab active d-flex flex-row align-items-center justify-content-lg-center justify-content-start"><img src="resource/images/departure.png" alt=""><span>flights</span></div>
+						</div>		
+					</div>
+
+					<!-- Search Panel -->
+
+					<div class="search_panel active d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+					
+							
+							<form action="flight_information.html" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+								<table style="border-spacing: 8px;border-collapse: separate;">
+								<tr>
+									<td width = "40px">
+										<div class="search_item">
+											<div>Round Trip<input type="radio" id="round" name="is_round_trip" value="roundt" checked="checked"></div>
+											<div>One Way<input type="radio" id="round" name="is_round_trip" value="singlet"></div>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>Origin</div>
+											
+											<select name="origin" id="origin" class="dropdown_item_select search_input" style="width: 200px;">
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>Destination</div>
+											<select name="destination" id="destination" class="dropdown_item_select search_input" style="width: 200px;">
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>DepartureDate</div>
+											<input type="date" name="departureDate" id = "departureDate" class="check_in search_input" 
+											placeholder="YYYY-MM-DD" style="width: 180px;" required/>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>ReturnDate</div>
+											<input type="date" name="returnDate" id="returndate" class="check_out search_input" placeholder="YYYY-MM-DD" style="width: 180px;" required/>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>Travellers</div>
+											<select name="adults" name="travellers" id="travellers" class="dropdown_item_select search_input" style="width: 100px;">
+												<option value = "1">1</option>
+												<option value = "2">2</option>
+												<option value = "3">3</option>
+												<option value = "4">4</option>
+												<option value = "5">5</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+							</table>
+							<button id="confirmsearch" class="button search_button">search<span></span><span></span><span></span></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+	<script type="text/javascript">
+		
+
+		async function getAirportInfo(){
+			console.log("asd");
+			const response = await fetch("https://g8t2-kong.herokuapp.com/runAirline/airline")
+			const data = await response.json()
+			return data
+		}
+
+		var airportinfo = getAirportInfo().then(function(data) {
+			console.log(data.airport_info.length);
+			for (var i=0; i < data.airport_info.length; i++){
+				$('#origin').append("<option value= '" + data.airport_info[i].iataCode + "'>" + data.airport_info[i]['country'] + "</option>");
+				$('#destination').append("<option value= '" + data.airport_info[i].iataCode + "'>" + data.airport_info[i]['country'] + "</option>");
+			}
+		});
+	</script>
+
+	<!-- Shifting info to display at search page -->
+	<script type="text/javascript">
+
+   
+	</script>
+
+	<!-- Intro -->
+	
+	<div class="intro">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<h2 class="intro_title text-center">Recommendations for you</h2>
+				</div>
+			</div>
+			
+			<div class="row intro_items">
+
+				<!-- Intro Item -->
+
+				<!-- Can retrieve from DB like randomly 3 destination -->
+				<div class="col-lg-4 intro_col">
+					<div class="intro_item">
+						<div class="intro_item_overlay"></div>
+						<!-- Image by https://unsplash.com/@dnevozhai -->
+						<div class="intro_item_background" style="background-image:url('./resource/images//offer_1.jpg')"></div>
+						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
+							<div class="intro_date">April 25th - June 1st</div>
+							<div class="button intro_button"><div class="button_bcg"></div><a href="flight_information.html?error=No flight to Mauritiues due to Covid19">see more<span></span><span></span><span></span></a></div>
+							<div class="intro_center text-center">
+								<h1>Mauritius</h1>
+								<div class="intro_price">From $1200</div>
+								<div class="rating rating_4">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Intro Item -->
+
+				<div class="col-lg-4 intro_col">
+					<div class="intro_item">
+						<div class="intro_item_overlay"></div>
+						<!-- Image by https://unsplash.com/@hellolightbulb -->
+						<div class="intro_item_background" style="background-image:url('./resource/images/intro_2.jpg')"></div>
+						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
+							<div class="intro_date">May 25th - June 1st</div>
+							<div class="button intro_button"><div class="button_bcg"></div><a href="flight_information.html?error=No flight to Greece due to Covid19">see more<span></span><span></span><span></span></a></div>
+							<div class="intro_center text-center">
+								<h1>Greece</h1>
+								<div class="intro_price">From $1450</div>
+								<div class="rating rating_4">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Intro Item -->
+
+				<div class="col-lg-4 intro_col">
+					<div class="intro_item">
+						<div class="intro_item_overlay"></div>
+						<!-- Image by https://unsplash.com/@willianjusten -->
+						<div class="intro_item_background" style="background-image:url('./resource/images/intro_3.jpg')"></div>
+						<div class="intro_item_content d-flex flex-column align-items-center justify-content-center">
+							<div class="intro_date">May 25th - June 1st</div>
+							<div class="button intro_button"><div class="button_bcg"></div><a href="flight_information.html?error=No flight to Scotland due to Covid19">see more<span></span><span></span><span></span></a></div>
+							<div class="intro_center text-center">
+								<h1>Scotland</h1>
+								<div class="intro_price">From $1450</div>
+								<div class="rating rating_4">
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+									<i class="fa fa-star"></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- OFFER OFFER OFFER -->
+				
+	<div class="offers">
+		<div class="container">
+			<div class="row">
+				<div class="col text-center">
+					<h2 class="section_title">Who doesn't love a good deal?</h2>
+				</div>
+			</div>
+			<div class="row offers_items">
+
+				<!-- Offers Item MELBOURNE-->
+				<div class="col-lg-6 offers_col">
+					<div class="offers_item">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="offers_image_container">
+									<div class="offers_image_background" style="background-image:url(./resource/images/offer_1.jpg)"></div>
+									<div class="offer_name"><a href="flight_information.html">Melbourne</a></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="offers_content">
+									<div class="offers_price">$110<span>Melbourne, Australia</span></div>
+									<div class="rating_r rating_r_4 offers_rating">
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+									</div>
+									<p class="offers_text">Fly with Scoot </p>
+									<div class="offers_icons">
+										<ul class="offers_icons_list">
+											<li class="offers_icons_item"><img src="resource/images/post.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/compass.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/bicycle.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/sailboat.png" alt=""></li>
+										</ul>
+									</div>
+									<div class="offers_link"><a href="flight_information.html">Book Now</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Offers Item TURKEY -->
+				<div class="col-lg-6 offers_col">
+					<div class="offers_item">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="offers_image_container">
+									<!-- Image by Egzon Bytyqi -->
+									<div class="offers_image_background" style="background-image:url(./resource/images/offer_2.jpg)"></div>
+									<div class="offer_name"><a href="flight_information.html">turkey hills</a></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="offers_content">
+									<div class="offers_price">$500<span>Cappadocia, Turkey</span></div>
+									<div class="rating_r rating_r_4 offers_rating">
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+									</div>
+									<p class="offers_text">Fly with Singapore Airlines</p>
+									<div class="offers_icons">
+										<ul class="offers_icons_list">
+											<li class="offers_icons_item"><img src="resource/images/post.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/compass.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/bicycle.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/sailboat.png" alt=""></li>
+										</ul>
+									</div>
+									<div class="offers_link"><a href="flight_information.html">Book Now</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Offers Item BANGKOK -->
+				<div class="col-lg-6 offers_col">
+					<div class="offers_item">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="offers_image_container">
+									<!-- Image by https://unsplash.com/@nevenkrcmarek -->
+									<div class="offers_image_background" style="background-image:url(./resource/images/offer_3.jpg)"></div>
+									<div class="offer_name"><a href="#">Phi Phi Island</a></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="offers_content">
+									<div class="offers_price">$90<span>Phuket, Thailand</span></div>
+									<div class="rating_r rating_r_4 offers_rating">
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+									</div>
+									<p class="offers_text">Fly with AirAsia</p>
+									<div class="offers_icons">
+										<ul class="offers_icons_list">
+											<li class="offers_icons_item"><img src="resource/images/post.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/compass.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/bicycle.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/sailboat.png" alt=""></li>
+										</ul>
+									</div>
+									<div class="offers_link"><a href="flight_information.html">Book Now</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Offers Item BALI-->
+				<div class="col-lg-6 offers_col">
+					<div class="offers_item">
+						<div class="row">
+							<div class="col-lg-6">
+								<div class="offers_image_container">
+									<!-- Image by https://unsplash.com/@mantashesthaven -->
+									<div class="offers_image_background" style="background-image:url(./resource/images/offer_4.jpg)"></div>
+									<div class="offer_name"><a href="flight_information.html">Sanur Beach</a></div>
+								</div>
+							</div>
+							<div class="col-lg-6">
+								<div class="offers_content">
+									<div class="offers_price">$60<span>Denpasar, Bali</span></div>
+									<div class="rating_r rating_r_4 offers_rating">
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+										<i></i>
+									</div>
+									<p class="offers_text">Fly with JetStar</p>
+									<div class="offers_icons">
+										<ul class="offers_icons_list">
+											<li class="offers_icons_item"><img src="resource/images/post.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/compass.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/bicycle.png" alt=""></li>
+											<li class="offers_icons_item"><img src="resource/images/sailboat.png" alt=""></li>
+										</ul>
+									</div>
+									<div class="offers_link"><a href="flight_information.html">Book Now</a></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+	<!-- Footer -->
+	<footer class="footer">
+		<div class="container">
+			<div class="row">
+
+				<!-- Footer Column ABOUT US -->
+				<div class="col-lg-3 footer_column" >
+					<div class="footer_col">
+						<div class="footer_content footer_about">
+							<div class="logo_container footer_logo">
+								<div class="logo"><a href="#"><img src="resource/images/logo.png" alt="">skyscraper</a></div>
+							</div>
+							<p class="footer_about_text"  style="width: 500px; height:100px">SkyScraper is a web-based solution that allows users to search for their desired flights across various airlines, 
+								place bookings for flights through various user interfaces,
+								choose to make payment via PayPal, 
+								sync their flight dates to their Google calendar upon completion of booking, 
+								check-in online via their account,
+								cancel confirmed bookings.
+								Proudly brought to you by ESD G8T2 2020.
+								</p>
+							
+						</div>
+					</div>
+				</div>
+
+				<!-- Footer Column SOCIAL MEDIA-->
+				<div class="col-lg-3 footer_column" style="position:absolute; left:600px; ">
+					<div class="footer_col">
+						<div class="footer_title">social</div>
+						<div class="footer_content footer_tags">
+							<ul class="footer_social_list">
+								<li class="footer_social_item"><a href="#"><i class="fa fa-pinterest"></i></a></li>
+								<li class="footer_social_item"><a href="#"><i class="fa fa-facebook-f"></i></a></li>
+								<li class="footer_social_item"><a href="#"><i class="fa fa-twitter"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+
+
+				<!-- Footer Column CONTACT INFO-->
+				<div class="col-lg-3 footer_column" style="position:absolute; right:-20px; height:70px;   ">
+					<div class="footer_col" >
+						<div class="footer_title">contact info</div>
+						<div class="footer_content footer_contact">
+							<ul class="contact_info_list">
+								<li class="contact_info_item d-flex flex-row">
+									<div><div class="contact_info_icon"><img src="resource/images/placeholder.svg" alt=""></div></div>
+									<div class="contact_info_text">SMU School of Information Systems
+										Singapore Management University
+										80 Stamford Road
+										Singapore 178902</div>
+								</li>
+								<li class="contact_info_item d-flex flex-row">
+									<div><div class="contact_info_icon"><img src="resource/images/phone-call.svg" alt=""></div></div>
+									<div class="contact_info_text">6828 0100</div>
+								</li>
+								<li class="contact_info_item d-flex flex-row">
+									<div><div class="contact_info_icon"><img src="resource/images/message.svg" alt=""></div></div>
+									<div class="contact_info_text"><a href="mailto:contactme@gmail.com?Subject=Hello" target="_top">flightscraper123@gmail.com</a></div>
+								</li>
+								
+							</ul>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</footer>
+
+
+<script src="resource/js/jquery-3.2.1.min.js"></script>
+<script src="resource/styles/bootstrap4/popper.js"></script>
+<script src="resource/styles/bootstrap4/bootstrap.min.js"></script>
+<script src="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+<script src="resource/plugins/easing/easing.js"></script>
+<script src="resource/js/custom.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FlightScraper</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="FlightScraper Project">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="resource/styles/bootstrap4/bootstrap.min.css">
+<link href="resource/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+<link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+<link rel="stylesheet" type="text/css" href="resource/plugins/OwlCarousel2-2.2.1/animate.css">
+<link rel="stylesheet" type="text/css" href="resource/styles/main_styles.css">
+<link rel="stylesheet" type="text/css" href="resource/styles/responsive.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="resource/js/scrollable.js"></script>
+<!-- <link rel="icon" href="./resource/images/favicon.ico"> -->
+
+
+<style>
+    body {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        background: #5d2f90;
+        color: black !important;
+    }
+    
+    #selectbtn {
+        vertical-align: middle;
+        text-align: middle;
+    }
+
+
+    .flightSearchResult #airlogo {
+        vertical-align: top;
+    }
+
+    .flightSearchResult td{
+        border-top: 0;
+        height: 5px;
+        padding: 0rem;
+        text-align: center;
+        width: 20%;
+        font-size: 18px; 
+     }
+
+    .flightSearchResult {
+        border-color:mediumpurple;
+        padding: 10px;
+        box-shadow: 5px 5px mediumpurple;
+        background-color: aliceblue;
+        width: 100%;
+        border-radius: 25px;
+
+    }
+
+    .flightSearchResult tbody td{
+        padding: 2px;
+    }
+
+
+
+    input[type=date]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        display: none;
+    }
+
+    tbody tr{
+        padding:10px;
+        
+    }
+
+    .pagination{
+        float: right;   
+    }
+
+    
+</style>
+
+<body>
+
+<div class="super_container">
+	
+	<!-- Header -->
+
+	<header class="header">
+
+		<!-- Top Bar -->
+
+		<div class="top_bar">
+			<div class="container">
+				<div class="row">
+					<div class="col d-flex flex-row">
+						<div class="user_box ml-auto">
+							<div class="user_box_login user_box_link"><a href="login.html">login</a></div>
+							<!-- Todo:
+							after log in display username 
+							default will be "-"-->
+							<div class="user_box_register user_box_link"><a href="#">Tng Zi Xiang</a></div>
+						</div>
+					</div>
+				</div>
+			</div>		
+		</div>
+
+		<!-- Main Navigation -->
+
+		<nav class="main_nav">
+			<div class="container">
+				<div id="header_logo" class="row">
+					<div class="col main_nav_col d-flex flex-row align-items-center justify-content-start">
+						<div class="logo_container">
+							<div class="logo"><a href="index.html"><img src="resource/images/logo.png" alt="">FlightScraper</a></div>
+                        </div>
+						<div class="main_nav_container ml-auto">
+							<ul class="main_nav_list">
+								<li class="main_nav_item"><a href="#">home</a></li>
+								<li class="main_nav_item"><a href="flight_information.html">Flight Search</a></li>
+								<li class="main_nav_item"><a href="managed_booking.html?userid=1">Manage Booking</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</nav>
+
+	</header>
+    <!-- Search -->
+    <div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+    </div>
+
+    <div id="errorDiv"></div>
+
+
+	<div class="search">
+		<!-- Search Contents -->
+		<div class="container fill_height">
+			<div class="row fill_height">
+				<div class="col fill_height">
+					<div class="search_panel active">
+						<form action="flight_information.html" id="search_form_1" class="search_panel_content d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-between justify-content-start">
+
+							
+							<table style="border-spacing: 8px;border-collapse: separate;">
+								<tr>
+									<td width = "40px">
+										<div class="search_item">
+											<!-- Todo
+											One way selected destination2 will be disable -->
+											<div>Round Trip<input type="radio" id="roundt" name="is_round_trip" value="roundt"></div>
+											<div>One Way<input type="radio" id="singlet" name="is_round_trip" value="singlet"></div>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>Origin</div>
+											<select name="origin" id="origin" class="dropdown_item_select search_input" style="width: 200px;" required>
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>Destination</div>
+											<select name="destination" id="destination" class="dropdown_item_select search_input" style="width: 200px;" required>
+											</select>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>DepartureDate</div>
+											<input type="date" name="departureDate" id = "departureDate" class="check_in search_input" placeholder="YYYY-MM-DD" style="width: 180px;" required>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>ReturnDate</div>
+                                            <input type="date" name="returnDate" id="returnDate" class="check_out search_input" placeholder="YYYY-MM-DD" style="width: 180px;" required>
+										</div>
+									</td>
+									<td>
+										<div class="search_item">
+											<div>Travellers</div>
+											<select name="adults" name="travellers" id="travellers" class="dropdown_item_select search_input" style="width: 100px;">
+												<option value = "1">1</option>
+												<option value = "2">2</option>
+												<option value = "3">3</option>
+												<option value = "4">4</option>
+												<option value = "5">5</option>
+											</select>
+										</div>
+									</td>
+								</tr>
+                            </table>
+                            <button id="confirmsearch" class="button search_button">search<span></span><span></span><span></span></button>
+                        </form>
+
+					</div>
+				</div>
+			</div>
+		</div>		
+    </div>
+    
+    <!-- Home -->
+
+    <div id="main-container" class="container">
+
+        <!-- need to fix the colour -->
+        <br>
+        
+        <div id="consolidateTable">
+        </div>
+
+        
+        
+    </div>
+
+
+    
+<script type="text/javascript">
+    
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    var error = urlParams.get("error")
+    
+    if (error != null && error != ""){
+        showError(error)
+    } 
+
+    function showError(msg){
+        //$("#main-container").append("<h1 class=\"display-4\" style=\"font-size: 28px;\">No Flights Available. Please try searching again.</h1>");
+        
+        //$("#errorDiv").empty();
+        $("#errorDiv").append("<div class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">" +  msg  +
+        `<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button></div>`);
+        $("#header_logo").show();
+        $(window).scrollTop(0);
+        
+    }
+    
+    
+    
+
+    
+
+    async function searchFlight(origin, destination, departureDate, returnDate, travellers) {  
+        // Change serviceURL to your own
+        var serviceURL = "https://g8t2-kong.herokuapp.com/runAirline/airline/" + origin + "&" + destination + "&" + departureDate + "&" + returnDate; 
+        try {
+            console.log("Searching flight for " + origin)
+
+            const response =
+                await fetch(
+                serviceURL, { method: 'GET' }
+            );
+            var allFlightInfo = await response.json();
+
+            
+            console.log("Searching flight for " + origin)
+
+            if(response.ok){
+               var flight_info = allFlightInfo.flight_info
+
+               console.log(flight_info.length)
+                if (flight_info == null || flight_info.length ==0){
+                    
+                        showError("No Flights Found");
+                    
+                } else {
+                    
+                    $("#consolidateTable").append("<div><h1 class=\"display-4\" style=\"font-size: 28px;\">Flight Search Result</h1></div>");
+                    
+                    for (var i = 0; i < flight_info.length; i++){
+                
+                        var seatsleft = flight_info[i].seatsLeft
+                        if (seatsleft > travellers) {
+                            var airlineId = flight_info[i].airlineId
+                            var outboundTime = flight_info[i].outbound_time.split(" ")
+                            var inboundTime = flight_info[i].inbound_time.split(" ")
+        
+                            // Need to convert Price
+                            var flightprice = flight_info[i].price
+                            var exchange_rate = { "BKK": 22.45, "ATL": 1.97, "DXB": 2.60, "HKG": 5.50, "HND": 76.27, "ICN": 856.34, "LAS": 0.71, "LHR": 0.71, "PEK": 4.94, "PVG": 4.94, "SFO": 0.71, "SIN": 1, "SZX": 4.94 }
+                            var currentrate = exchange_rate[origin]
+                            var newprice = flightprice / currentrate
+                            var flightprice = newprice.toFixed(0);
+                            console.log(flightprice)
+                            // convert to flightduration
+                            var hours = Math.floor(flight_info[i].flightDuration / 3600 / 2 / 2)
+                            var minutes = Math.floor(flight_info[i].flightDuration / 3600 / 2 / 2- hours / 60)
+                            if (hours > 24){
+                                //process hour - outbound
+                                var flightduration = hours + "h " + minutes + "m + 1 stop"
+                                if (parseInt(outboundTime[1].split(":")[0]) + hours-24 > 24){
+                                    var newHour = parseInt(outboundTime[1].split(":")[0]) + hours-24-24
+                                } else {
+                                    var newHour = parseInt(outboundTime[1].split(":")[0]) + hours-24
+                                }
+        
+                                if (newHour < 10){
+                                    var newHour = "0" + newHour
+                                } 
+        
+                                //process time
+                                if (parseInt(outboundTime[1].split(":")[1]) + minutes-60 > 60){
+                                    var newMin = parseInt(outboundTime[1].split(":")[1]) + minutes-60-60
+                                } else {
+                                    var newMin = parseInt(outboundTime[1].split(":")[1]) + minutes
+                                }
+        
+                                if (newMin < 10){
+                                    var newMin = "0" + newMin
+                                } 
+                                var computetime = newHour + ":" + newMin + ":00"
+                                //process hour inbound
+                                if (parseInt(inboundTime[1].split(":")[0]) + hours-24 > 24){
+                                    var inboundNewHour = parseInt(inboundTime[1].split(":")[0]) + hours-24-24
+                                } else {
+                                    var inboundNewHour = parseInt(inboundTime[1].split(":")[0]) + hours-24
+                                }
+        
+                                if (inboundNewHour < 10){
+                                    var inboundNewHour = "0" + inboundNewHour 
+                                } 
+        
+                                //process time
+                                if (parseInt(inboundTime[1].split(":")[1]) + minutes-60 > 60){
+                                    var inboundNewMin = parseInt(inboundTime[1].split(":")[1]) + minutes-60-60
+                                } else {
+                                    var inboundNewMin = parseInt(inboundTime[1].split(":")[1]) + minutes
+                                }
+        
+                                if (inboundNewMin < 10){
+                                    var inboundNewMin = "0" + inboundNewMin 
+                                } 
+        
+                                var returncomputetime = inboundNewHour + ":" + inboundNewMin + ":00" 
+                            } else {
+        
+                                var flightduration = hours + "h " + minutes + "m "
+                                if (parseInt(outboundTime[1].split(":")[0]) + parseInt(hours) >= 24){
+                                    var newHours = parseInt(outboundTime[1].split(":")[0]) + parseInt(hours)-24
+                                } else {
+                                    var newHours = parseInt(outboundTime[1].split(":")[0]) + parseInt(hours)
+                                }
+        
+                                if (parseInt(outboundTime[1].split(":")[1]) + parseInt(minutes) >= 60){
+                                    var newMinutes = parseInt(outboundTime[1].split(":")[1]) + parseInt(minutes)-60
+                                } else {
+                                    var newMinutes = parseInt(outboundTime[1].split(":")[1]) + parseInt(minutes)
+                                }
+        
+                                if (parseInt(inboundTime[1].split(":")[0]) + parseInt(hours) > 24){
+                                    var inboundHours = parseInt(inboundTime[1].split(":")[0]) + parseInt(hours)-24
+                                } else {
+                                    var inboundHours = parseInt(inboundTime[1].split(":")[0]) + parseInt(hours)
+                                }
+        
+                                if (parseInt(inboundTime[1].split(":")[1]) + parseInt(minutes) > 60){
+                                    var inboundNewMin = parseInt(inboundTime[1].split(":")[1]) + parseInt(minutes) - 60
+                                } else {
+                                    var inboundNewMin = parseInt(inboundTime[1].split(":")[1]) + parseInt(minutes)
+                                }
+        
+                                if (newHours < 10){
+                                    var newHours = "0" + newHours
+                                } 
+        
+                                if (newMinutes < 10){
+                                    var newMinutes = "0" + newMinutes
+                                }
+        
+                                if (inboundHours < 10){
+                                    var inboundHours = "0" + inboundHours
+                                } 
+        
+                                if (inboundNewMin < 10){
+                                    var inboundNewMin = "0" + inboundNewMin
+                                }
+        
+                                var computetime = newHours + ":" + newMinutes + ":00"
+                                var returncomputetime = inboundHours + ":" + inboundNewMin + ":00" 
+                            }
+        
+                            // console.log(flight_info[i].airlineId);
+
+                            if (flight_info[i].airlineId == 'SQ'){
+                                var firstrow = 
+                                    "<tr><td></td></tr>"+
+                                    "</td><td height='10'rowspan = 4 align = 'left' >"+
+                                        "<div><h3>" + flight_info[i].airlineId + flight_info[i].flightNumber +"</h3></div>" +
+                                        "<img src=resource/images/SIAlogoUpdated.png height='80' width='80'>"+
+                                    "</td>" + 
+                                    "<td><strong>" + outboundTime[1] + "</strong></td>" + 
+                                    "<td>" + flightduration + "</td>" + 
+                                    "<td><strong>" + computetime + "<strong></td><td></td>"
+                            }
+
+                            else if (flight_info[i].airlineId == 'AF'){
+                                var firstrow = 
+                                    "<tr><td></td></tr>"+
+                                    "</td><td height='10'rowspan = 4 align = 'left' >"+
+                                        "<div><h3>" + flight_info[i].airlineId + flight_info[i].flightNumber +"</h3></div>" +
+                                        "<img src=resource/images/airfrance.jpg height='80' width='80'>"+
+                                    "</td>" + 
+                                    "<td><strong>" + outboundTime[1] + "</strong></td>" + 
+                                    "<td>" + flightduration + "</td>" + 
+                                    "<td><strong>" + computetime + "<strong></td><td></td>"
+                            }
+
+                            else if (flight_info[i].airlineId == 'AI'){
+                                var firstrow = 
+                                    "<tr><td></td></tr>"+
+                                    "</td><td height='10'rowspan = 4 align = 'left' >"+
+                                        "<div><h3>" + flight_info[i].airlineId + flight_info[i].flightNumber +"</h3></div>" +
+                                        "<img src=resource/images/airindia.jpg height='80' width='80'>"+
+                                    "</td>" + 
+                                    "<td><strong>" + outboundTime[1] + "</strong></td>" + 
+                                    "<td>" + flightduration + "</td>" + 
+                                    "<td><strong>" + computetime + "<strong></td><td></td>"
+                            }
+
+                            else if (flight_info[i].airlineId == 'AS'){
+                                var firstrow = 
+                                    "<tr><td></td></tr>"+
+                                    "</td><td height='10'rowspan = 4 align = 'left' >"+
+                                        "<div><h3>" + flight_info[i].airlineId + flight_info[i].flightNumber +"</h3></div>" +
+                                        "<img src=resource/images/alaskaairlines.jpg height='80' width='80'>"+
+                                    "</td>" + 
+                                    "<td><strong>" + outboundTime[1] + "</strong></td>" + 
+                                    "<td>" + flightduration + "</td>" + 
+                                    "<td><strong>" + computetime + "<strong></td><td></td>"
+                            }
+
+                                
+                            
+        
+                            var secondrow = 
+                                "<td>" + origin + "</td>" + 
+                                "<td><img id='airlogo' src='resource/images/airplane.svg' height='30' width='50'></td>" + 
+                                "<td>" + destination + "</td><td align=center><h4><strong>$" + flightprice + ".00</strong></h4></td>" 
+                            
+                            console.log(flightprice)
+                            var thirdrow = 
+                                "<td></td><td></td><td></td>"+
+                                    "<td><button onclick='addbooking(this.id)' id='" + flight_info[i].airlineId + ":" + flight_info[i].flightNumber + ":" + flight_info[i].flightId + ":" + flightprice + "' class='btn btn-primary'>Select</button></td>"
+                    
+                            var fourthrow = 
+                                "<td><strong>" + inboundTime[1] + "</strong></td>" + 
+                                "<td>" + flightduration + "</td>" + 
+                                "<td><strong>" + returncomputetime + "</strong></td><td></td>"; 
+                        
+        
+                            //Todo: need to validate if one way do not have this
+                            var fifthrow = 
+                                "<td></td>" +
+                                "<td>" + destination + "</td>" + 
+                                "<td><img id='airlogo' src='resource/images/airplane.svg' height='30' width='50'></td>" + 
+                                "<td>" + origin + "</td>" +
+                                "<td></td>" +
+                                "<tr><td></td></tr>";
+        
+        
+                            resultrow1 = "<table "+
+                            "class='flightSearchResult' ><tbody><tr>" + firstrow + "</tr>" + "<tr>" + secondrow + "</tr>" + "<tr>" + thirdrow + "</tr>" + "<tr>" + fourthrow + "</tr>" + "<tr>" + fifthrow + "</tr></tbody></table><br>";
+        
+                            $("#consolidateTable").append(resultrow1)
+
+                        }
+
+                        /*var str = `
+                            <!-- Nav -->
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                                </ul>
+                            </nav>
+                            `
+                            $("#consolidateTable").append(str)
+                        */
+                    }
+                } 
+            }
+        } catch (error) {
+            // Errors when calling the service; such as network error, 
+            // service offline, etc
+            showError('There is a problem retrieving flight data, please try again later.<br />');
+         
+            } // error
+    };
+
+
+    // Load my drop down lists
+    async function getAirportInfo(){
+        try{
+            
+        const response = await fetch("https://g8t2-kong.herokuapp.com/runAirline/airline")
+        const data = await response.json()
+        return data
+        }
+        catch(error){
+            showError('There is a problem retrieving the airlines, please try again later.<br />');
+        }
+        
+    }
+
+    var airportinfo = getAirportInfo().then(function(data) {
+
+
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+
+        var round = urlParams.get("is_round_trip")
+        var origin = urlParams.get("origin")        
+        var destination = urlParams.get("destination")
+        var departureDate = urlParams.get("departureDate")
+        var returnDate = urlParams.get("returnDate")
+        var travellers = urlParams.get("travellers")
+
+
+        $('#round').val(round)
+        //$('#destination1').val(origin)
+        //$('#destination2').val(destination)
+        $('#departureDate').val(departureDate)
+        $('#returnDate').val(returnDate)
+        $('#Travellers').val(travellers)
+
+
+        if (round == "roundt"){
+            document.getElementById("roundt").checked = true;
+        } else {
+            document.getElementById("singlet").checked = true;
+        }
+
+
+        for (var i=0; i < data.airport_info.length; i++){
+            if (data.airport_info[i].iataCode == origin){
+                $('#origin').append("<option value= '" + data.airport_info[i].iataCode + "' selected=\"selected\">" + data.airport_info[i]['country'] + "</option>");
+            }else{
+                $('#origin').append("<option value= '" + data.airport_info[i].iataCode + "'>" + data.airport_info[i]['country'] + "</option>");
+            }
+            
+            
+        }
+        for (var i=0; i < data.airport_info.length; i++){
+            if (data.airport_info[i].iataCode == destination){
+                $('#destination').append("<option value= '" + data.airport_info[i].iataCode + "' selected=\"selected\">" + data.airport_info[i]['country'] + "</option>");
+            }else{
+                $('#destination').append("<option value= '" + data.airport_info[i].iataCode + "'>" + data.airport_info[i]['country'] + "</option>");
+            }
+        }
+
+        // Load my flights
+        searchFlight(origin, destination, departureDate, returnDate,travellers);
+    });
+
+    $(document).ready(function(){
+        
+        
+    });
+
+
+    
+
+    
+    
+
+    // Shifting info to display at search page 
+
+    /*$('#confirmsearch').click(function(e){ //click event
+        var round = $('#round').val();
+        var origin = $('#origin').val();
+        console.log(origin)
+        var destination = $('#destination').val();
+        console.log(destination)
+        var departureDate = $('#departureDate').val();
+        var returnDate = $('#returndate').val();
+        var travellers = $('#travellers').val();
+        var url = "flight_information.html?round="+round+"&origin="+origin+"&destination="+destination+"&departureDate="+departureDate+"&returnDate="+returnDate+"&travellers="+travellers;
+        window.location.replace(url);
+    })*/
+
+
+    function addbooking(addId){
+        console.log(addId)
+        var flightAir = addId.split(":")
+        var airlineCode = flightAir[0]
+        var flightCode = flightAir[1]
+        var flightID = flightAir[2]
+        var price = flightAir[3]
+        // Todo need a session to store userid - if not direct query 
+        var userid = 1
+        var parentPassengerId = 1
+        var status = false
+        
+        $(async() => { 
+            var serviceURL = "https://g8t2-kong.herokuapp.com/add_booking";
+
+            try {
+                const response = 
+                await fetch(
+                    serviceURL, {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({userID: userid, 
+                        airlineID: airlineCode,flightID: flightID,
+                        parentPassengerID: parentPassengerId,
+                        isCancelled: status})
+                });
+
+                const data = await response.json()
+
+                var bookingId = data.bookingID
+
+                
+                // var airlineID = data.airlineID
+                // var flightID = data.flightID
+                // var userID = data.userID
+                // var parentPassengerID= data.parentPassengerID
+
+
+                //Restart to try                
+                var url = "booking.html?bookingID="+bookingId+"&flightID="+flightID+"&price="+price+"&travellers="+travellers+"&userid="+userid
+                window.location.replace(url);
+
+                if (response.ok){
+                    console.log("All is good")
+                }
+                
+                
+            } catch (error) {
+                // Errors when calling the service; such as network error, 
+                // service offline, etc
+                showError('There is a problem adding your booking, please try again later.<br />');
+                
+                } // error
+        });
+
+    }
+  
+
+</script>
+</body>
+</div>
+
+
