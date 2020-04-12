@@ -1,0 +1,48 @@
+# docker-compose.yml
+version: '3'
+services:
+    db:
+        image: postgres
+        # restart: always
+        environment:
+          POSTGRES_PASSWORD: 50774a097f52ca2b93cae15149d94b89ba09bc00923e128aae95352a9cdbab90
+    
+    rabbitmq:
+        image: rabbitmq:3-management
+
+    airlines:
+        image: aisyah/esd_g8t2:airlines
+        ports:
+        - 5011:5001
+        depends_on:
+        - db
+
+    booking:
+        image: aisyah/esd_g8t2:booking
+        ports:
+        - 5022:5002
+        depends_on:
+        - db
+
+    passenger:
+        image: aisyah/esd_g8t2:passenger
+        ports:
+        - 5033:5003
+        depends_on:
+        - db
+
+    payment:
+        image: aisyah/esd_g8t2:payment
+        ports:
+        - 5044:5004
+        depends_on:
+        - db
+    
+    notification:
+        image: aisyah/esd_g8t2:notification
+        ports:
+        - 5055:5005
+        depends_on: 
+        - payment
+
+    
